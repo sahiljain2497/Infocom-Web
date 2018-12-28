@@ -61,12 +61,20 @@ class RegisterController extends BaseController
      * @return \App\User
      */
     protected function create(array $data)
-    {
+    {   
+        $len = User::count() + 1;
+        if($len < 10)
+            $emp_id = 'EMP00'.$len;
+        else if($len < 100)
+            $emp_id = 'EMP0'.$len;
+        else 
+            $emp_id = 'EMP'.$len;
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'type' => User::DEFAULT_TYPE,
+            'emp_id' => $emp_id,
         ]);
     }
 }

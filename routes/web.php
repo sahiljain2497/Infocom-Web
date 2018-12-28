@@ -21,10 +21,18 @@ Route::get('/unauth', function(){
 	return view('unauthorized');
 });
 
-Route::get('/user', 'HomeController@index')
-    ->middleware('is_user')    
-    ->name('user');
+Route::namespace('User')
+	->prefix('user')
+	->middleware(['is_user'])
+	->group(function () {
+	Route::get('/', 'HomeController@index')->name('home');
+	Route::resource('user','UserController');
+});
 
-Route::get('/admin', 'AdminController@admin')    
-    ->middleware('is_admin')    
-    ->name('admin');
+Route::namespace('Admin')
+	->prefix('admin')
+	->middleware(['is_admin'])
+	->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::resource('users','UserController');
+});
