@@ -34,7 +34,7 @@
         <li class="nav-item">
             <a class="nav-link" href="/user/user">Profile</a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="/user/attendance">Attendance</a>
         </li>
         <li class="nav-item">
@@ -63,12 +63,19 @@
   </div>
 </nav>
     <div class="container">
+    @if($status)
+    <form method="POST" action="{{route('home.update',$data->id)}}">
+    @else
+    <form method="POST" action="{{route('home.store')}}">
+    @endif
+        {{ csrf_field() }}
+        {{ method_field('POST') }}
         <div class="row">
             <div class="col-sm-6">
                 <label>Circle :</label>
             </div>
             <div class="col-sm-6">    
-                <select id="circle" name="cicle">
+                <select id="circle" name="circle" >
                     <option>Option 1</option>
                     <option>Option 2</option>
                     <option>Option 3</option>
@@ -90,21 +97,41 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <label>Time In : </label>
+            <div class="col-sm-6">
+                <label>Date : </label>
             </div>
-            <div class="col-md-6">
-                <input type="time" class="form-control">
+            <div class="col-sm-6">
+                <input type="date" name="date" value="<?php echo date('Y-m-d'); ?>" readonly/>
             </div>
         </div>
         <div class="row">
-        <div class="col-md-6">
-                <label>Time Out : </label>
+            <div class="col-sm-6">
+                <label>project : </label>
             </div>
-            <div class="col-md-6">
-                <input type="time" class="form-control">
+            <div class="col-sm-6">
+                <input type="text" name="project" value="{{ $status ? $data->project : '' }}" {{ $status ? 'readonly' : '' }} >
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label>Time In : </label>
+            </div>
+            <div class="col-sm-6">
+                <input type="time" name="timein" value="{{ $status ? '' : date('H:i') }}" readonly>
+            </div>
+        </div>
+        @if($status === 1)
+        <div class="row">
+            <div class="col-sm-6">
+                    <label>Time Out : </label>
+                </div>
+                <div class="col-sm-6">
+                    <input type="time" name="timeout" value="<?php echo date('H:i'); ?>" readonly>
+                </div>
+        </div>
+        @endif
+        <input type="submit" class="btn btn-lg btn-primary" />
+        </form>
     </div>
 </body>
 </html>

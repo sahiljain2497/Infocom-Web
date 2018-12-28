@@ -15,7 +15,7 @@ class BaseController extends Controller
         	case User::ADMIN_TYPE :
         		return '/admin';
             default :
-                return '/user';
+                return '/user/home';
         }
 
     }
