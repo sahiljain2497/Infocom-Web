@@ -1,0 +1,23 @@
+.classic-container{
+    width: 90%;
+    margin: 2% auto;
+}
+.row{
+    width: 97%;
+    margin: 0 auto;
+}
+.form-control{
+    display: inline;
+    width: 250px;
+}
+.search-btn{
+    line-height: 1.6;
+    margin-bottom: 3px;
+}
+.table-container{
+    overflow-x:auto;
+    width:100%;
+}
+.table tbody{
+    padding-bottom: 100px;
+}

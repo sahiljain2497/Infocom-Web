@@ -1,0 +1,26 @@
+.options{
+    text-align: left;
+    border:1px solid lightgray;
+    margin:2%;
+    padding: 10px;
+    font-size: 21px;
+    font-weight: 500;
+    padding-left:3%;
+}
+.options a{
+    color:black;
+}
+.options:hover{
+    background:lightgray;
+}
+
+@media only screen and (max-width:520px){
+    .options{
+        padding:10px;
+        font-size: 18px;
+        text-align: left;
+    }
+    .static-icon{
+        display: inline;
+    }
+}
