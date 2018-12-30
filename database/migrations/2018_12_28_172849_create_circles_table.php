@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCircleTable extends Migration
+class CreateCirclesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCircleTable extends Migration
      */
     public function up()
     {
-        Schema::create('circle', function (Blueprint $table) {
+        Schema::create('circles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('region');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateCircleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('circle');
+        Schema::dropIfExists('circles');
     }
 }

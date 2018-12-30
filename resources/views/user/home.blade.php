@@ -65,35 +65,41 @@
     <div class="container">
     @if($status)
     <form method="POST" action="{{route('home.update',$data->id)}}">
+        {{ csrf_field() }}
+        {{ method_field('PATCH') }}
     @else
     <form method="POST" action="{{route('home.store')}}">
-    @endif
         {{ csrf_field() }}
         {{ method_field('POST') }}
+    @endif
         <div class="row">
             <div class="col-sm-6">
                 <label>Circle :</label>
             </div>
             <div class="col-sm-6">    
                 <select id="circle" name="circle" >
-                    <option>Option 1</option>
-                    <option>Option 2</option>
-                    <option>Option 3</option>
-                    <option>Option 4</option>
+                    @if(!empty($data))
+                        @foreach($circles as $circle)
+                            <option {{$data->circle == $circle->region? 'selected':'' }}>
+                                {{$circle->region}}
+                            </option>
+                        @endforeach
+                    @else
+                        @foreach($circles as $circle)
+                            <option>
+                                {{$circle->region}}
+                            </option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <label>manager :</label>
+                <label>Manager :</label>
             </div>
             <div class="col-sm-6">    
-                <select id="manager" name="manager">
-                    <option>manager 1</option>
-                    <option>manager 2</option>
-                    <option>manager 3</option>
-                    <option>manager 4</option>
-                </select>
+                <input id="manager" name="manager" value="{{ !empty($data) ? $data->manager : ''}}"/>
             </div>
         </div>
         <div class="row">
@@ -112,25 +118,23 @@
                 <input type="text" name="project" value="{{ $status ? $data->project : '' }}" {{ $status ? 'readonly' : '' }} >
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <label>Time In : </label>
-            </div>
-            <div class="col-sm-6">
-                <input type="time" name="timein" value="{{ $status ? '' : date('H:i') }}" readonly>
-            </div>
-        </div>
-        @if($status === 1)
-        <div class="row">
-            <div class="col-sm-6">
-                    <label>Time Out : </label>
+        @if(empty($data->timeout))
+            @if(!$status)
+            <input type="submit" class="btn btn-lg btn-primary" value="check-in" />
+            @else
+            <div class="row">
+                <div class="col-sm-6">
+                    <label>Timein : </label>
                 </div>
                 <div class="col-sm-6">
-                    <input type="time" name="timeout" value="<?php echo date('H:i'); ?>" readonly>
+                    <input type="text" value="{{$data->created_at}}" readonly>
                 </div>
-        </div>
+            </div>
+            <input type="submit" class="btn btn-lg btn-primary" value="check-out" />
+            @endif
+        @else
+            <p>you have checked out for today.Contact admin for further changes</p>
         @endif
-        <input type="submit" class="btn btn-lg btn-primary" />
         </form>
     </div>
 </body>

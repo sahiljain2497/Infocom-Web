@@ -1,8 +1,6 @@
-<html>
-<head>
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
+@extends('layouts.admin')
+
+@section('content')
     <div class="container">
     <div class="jumbotron">
             <h1 class="display-4">EDIT USER INFO : </h1>
@@ -97,5 +95,4 @@
             </div>
         </form>
     </div>
-</body>
-</html>
+@endsection

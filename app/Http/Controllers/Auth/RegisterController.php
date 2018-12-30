@@ -62,7 +62,7 @@ class RegisterController extends BaseController
      */
     protected function create(array $data)
     {   
-        $len = User::count() + 1;
+        $len = User::orderBy('id','desc')->first()->id + 1;
         if($len < 10)
             $emp_id = 'EMP00'.$len;
         else if($len < 100)

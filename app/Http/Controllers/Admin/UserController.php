@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use Validator;
+use App\User;
 
 class UserController extends Controller
 {
@@ -14,9 +15,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {   
-        $users = DB::table('users')->get();
+        $empid = $request->input('search-id');
+        $users = User::searchId($empid);
         return view('admin.user.index')->withUsers($users);
     }
 

@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Circle;
-use Validator;
 
-class CircleController extends Controller
+class CirlceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,7 @@ class CircleController extends Controller
      */
     public function index()
     {
-        $circle = Circle::all();
-        return view('admin.circle.index')->withCircles($circle);
+        //
     }
 
     /**
@@ -38,20 +35,7 @@ class CircleController extends Controller
      */
     public function store(Request $request)
     {
-        Circle::forceCreate(['region' => $request->circle]);
-        return redirect()->route('circle.index');
-        // $v = Validator::make($request->all(),[
-        //     'circle' => 'required'
-        // ]);
-        // if($v->fails()){
-        //     print($v->messages());
-        //     die;
-        //     //return redirect()->route('circle.index')->withErrors($v);
-        // }
-        // else{
-        //     Circle::forceCreate(['region' => $request->circle]);
-        //     return redirect()->route('circle.index');
-        // }
+        //
     }
 
     /**

@@ -36,4 +36,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function scopeSearchId($query,$keyword){ 
+        if($keyword != '')
+            return $query->where('emp_id','like','%'.$keyword)->get();
+        return $query->get();
+    }
 }

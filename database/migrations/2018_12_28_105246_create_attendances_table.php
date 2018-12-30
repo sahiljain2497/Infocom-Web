@@ -23,8 +23,7 @@ class CreateAttendancesTable extends Migration
             $table->date('date');
             $table->string('manager');
             $table->string('project');
-            $table->string('timein');
-            $table->string('timeout')->nullable();
+            $table->boolean('timeout')->default(false);
             $table->timestamps();
         });
     }

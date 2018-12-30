@@ -4,20 +4,28 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Circle;
-use Validator;
+use App\Attendance;
 
-class CircleController extends Controller
+class AttendanceController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {
-        $circle = Circle::all();
-        return view('admin.circle.index')->withCircles($circle);
+        $empid = $request->input('emp_id');
+        $start = $request->input('start');
+        $end = $request->input('end');
+        if($empid == '' || $start == '' || $end == '')
+            $records = [];
+        else{
+            $records = Attendance::findAttendance($empid,$start,$end);
+            //print($records);
+            //die;
+        }
+        return view('admin.attendance.index')->withRecords($records)->withEmpid($empid)->withStart($start)->withEnd($end);
     }
 
     /**
@@ -38,20 +46,7 @@ class CircleController extends Controller
      */
     public function store(Request $request)
     {
-        Circle::forceCreate(['region' => $request->circle]);
-        return redirect()->route('circle.index');
-        // $v = Validator::make($request->all(),[
-        //     'circle' => 'required'
-        // ]);
-        // if($v->fails()){
-        //     print($v->messages());
-        //     die;
-        //     //return redirect()->route('circle.index')->withErrors($v);
-        // }
-        // else{
-        //     Circle::forceCreate(['region' => $request->circle]);
-        //     return redirect()->route('circle.index');
-        // }
+        //
     }
 
     /**

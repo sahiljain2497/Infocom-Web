@@ -35,5 +35,7 @@ Route::namespace('Admin')
 	->middleware(['is_admin'])
 	->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
-    Route::resource('users','UserController');
+	Route::resource('users','UserController');
+	Route::resource('attendance','AttendanceController');
+	Route::resource('circle','CircleController');
 });

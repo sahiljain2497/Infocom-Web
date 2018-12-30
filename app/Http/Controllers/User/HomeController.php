@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\Attendance;
+use App\Circle;
 use Validator;
 
 class HomeController extends Controller
@@ -17,6 +18,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $circles = Circle::all();
         $user = Auth::user()->emp_id;
         $date = date('Y-m-d');
         $d = [];
@@ -24,7 +26,7 @@ class HomeController extends Controller
         if($status === 1){
             $d = Attendance::where('emp_id','=',$user)->where('date','=',$date)->get()->first(); 
         }
-        return view('user.home')->withStatus($status)->withData($d);
+        return view('user.home')->withStatus($status)->withData($d)->withCircles($circles);
     }
 
     /**
@@ -49,7 +51,6 @@ class HomeController extends Controller
             'circle' => 'required',
             'manager' => 'required',
             'date' => 'required',
-            'timein' => 'required',
             'project' => 'required'
         ]);
         if($v->fails()){
@@ -62,10 +63,12 @@ class HomeController extends Controller
             $name = Auth::user()->name;
             $designation = Auth::user()->designation;
             $mobile = Auth::user()->mobile;
-            Attendance::forceCreate(['emp_id' => $id,'name' => $name,'designation' => $designation,
+            Attendance::forceCreate(['emp_id' => $id,'name' => $name,
+            'designation' => $designation,
             'mobile' => $mobile,'circle' => $request->circle,
-            'manager' => $request->manager,'project' => $request->project,
-            'date' => $request->date , 'timein' => $request->timein]);
+            'manager' => $request->manager,
+            'project' => $request->project,
+            'date' => $request->date ]);
             return redirect()->route('home.index');
         }
     }
@@ -101,7 +104,10 @@ class HomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $record = Attendance::where('id','=',$id)->first();
+        $record->timeout = true;
+        $record->save();
+        return redirect()->route('home.index');
     }
 
     /**

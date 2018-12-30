@@ -1,7 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container">
+    <div class="row">
+        <form method="GET">
+        @csrf
+        <input type="text" placeholder="Search Employee ID" name="search-id" />
+        <input type="submit" value="search" />
+        </form>
+    </div>
     <div class="row">
         <div class="col-md-12">
             <table class="table">
