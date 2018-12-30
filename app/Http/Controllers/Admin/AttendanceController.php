@@ -67,8 +67,9 @@ class AttendanceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+        $data = Attendance::where('id','=',$id)->first();
+        return view('admin.attendance.edit')->withData($data);
     }
 
     /**

@@ -10,8 +10,10 @@
     display: inline;
 }
 .search-btn{
+    margin-top:10px;
     line-height: 1.6;
     margin-bottom: 3px;
+    width:250px ;
 }
 .table-container{
     overflow-x:auto;
@@ -19,9 +21,4 @@
 }
 .table tbody{
     padding-bottom: 100px;
-}
-
-.search-btn{
-    width:250px;
-    margin-top:10px;
 }

@@ -1,22 +1,49 @@
-@extends('layouts.admin');
-
+@extends('layouts.admin')
+@section('stylesheets')
+<link href="{{ asset('css/admin/attendance.css') }}" rel="stylesheet">
+@endsection
 @section('content')
-    <div class="container">
+    <div class="classic-container">
         <div class="jumbotron">
-        <div class="row">
+            <h1 class="text-center">ATTENDANCE RECORDS</h1>
+        </div>
+        <div class="form-container">
             <form method="GET">
-                <input type="text" placeholder="Search EMPID" name="emp_id" value="{{$empid}}"/>
-                <input type="date" name="start" value="{{$start}}" />
-                <input type="date" name="end" value="{{$end}}" />
-                <input type="submit" value="search" />
+                <div class="row form-row">
+                    <div class="col-md-3 label-div">
+                        <label>EMP ID :</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" placeholder="Search EMPID" name="emp_id" value="{{$empid}}" class="form-control" />
+                    </div>
+                </div>
+                <div class="row form-row">
+                    <div class="col-md-3 label-div">
+                        <label>START DATE:</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="date" name="start" value="{{$start}}" class="form-control" />
+                    </div>
+                </div>
+                <div class="row form-row">
+                    <div class="col-md-3 label-div">
+                        <label>END DATE :</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="date" name="end" value="{{$end}}" class="form-control" />
+                    </div>
+                </div>
+                <div class="row form-row text-center">
+                    <div class="col-md-12">
+                        <input type="submit" value="SEARCH" class="btn btn-primary search-btn" />
+                    </div>
+                </div>
             </form>
         </div>
-        </div>
         @if(!empty($records))
-            <p>got some data</p>
             <div class="row">
-                <div class="col-md-12">
-                    <span>Showing from Date : </span><span>{{$start}}</span><span> to </span><span>{{$end}}</span>
+                <div class="table-container">
+                    <p style="font-size: 20px;text-align: center;font-weight: 599;"><span>Showing Records for <span>{{$empid}}</span> from date : </span><span>{{$start}}</span><span> to </span><span>{{$end}}</span></p>
                     <table class="table">
                         <thead>
                             <th>S.no</th>
@@ -37,8 +64,15 @@
                                     <td>{{$record->created_at}}</td>
                                     <td>{{$record->updated_at}}</td>
                                     <td>
-                                        <button>Edit</button>
-                                        <button>Delete</button>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                                Action
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a href="{{route('attendance.edit',$record->id)}}" class="dropdown-item">Edit</a>
+                                                <a href="{{route('attendance.edit',$record->id)}}" class="dropdown-item">Edit</a>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

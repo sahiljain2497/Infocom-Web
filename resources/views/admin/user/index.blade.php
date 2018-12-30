@@ -5,13 +5,15 @@
 @section('content')
 <div class="classic-container">
     <div class="jumbotron text-center">
-        <h1>USER LIST</h1>
+        <h1>USER RECORDS</h1>
     </div>
     <div class="row search-row">
         <form method="GET">
             @csrf
-            <input type="text" placeholder="Search Employee ID" name="search-id" class="form-control" />
+            <div style="width: 80%;">
+            <input type="text" placeholder="Search Employee ID" name="search-id" class="form-control" style="width:250px;" /><br/>
             <input type="submit" value="Search" class="btn btn-primary search-btn" />
+            </div>
         </form>
     </div>
     <hr/>
@@ -56,7 +58,7 @@
                                 <div class="dropdown-menu">
                                 <a href="{{route('users.show', $user->id)}}" class="dropdown-item">View</a>
                                 {{ Form::open(array('route' => array('users.destroy', $user->id), 'method' => 'delete')) }}
-                                <button type="submit" class="dropdown-item">Delete</button>
+                                <a onclick="return confirm('Are you sure?')" type="submit" class="dropdown-item">Delete</a>
                                 {{ Form::close() }}
                                 <a href="{{route('users.edit',$user->id)}}" class="dropdown-item">Edit</a></td>
                                 </div>

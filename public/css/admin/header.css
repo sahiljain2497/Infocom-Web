@@ -32,10 +32,38 @@ body{
     color:white;
 }
 
+/*form css*/
+
+.form-row{
+    margin-bottom:1%;
+}
+.form-container{
+    width:70%;
+    margin:5% auto;
+}
+.dropdown-item{
+    cursor: pointer;
+}
+
+/* label */
+
+.label-div{
+    text-align: left;
+    line-height: 2.5;
+    font-weight: 600;
+}
+
+
 /*media css */
 
 @media only screen and (max-width:520px){
     .nav-item{
         border-right: 0px;
+    }
+    .form-container{
+        width: 90%;
+    }
+    .form-row{
+        margin-bottom: 3%;
     }
 }
