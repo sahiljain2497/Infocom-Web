@@ -1,87 +1,45 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.user')
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-
-    <!-- Saztyles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" href="/">Tanishka Infocom Services</a>
-
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item">
-            <a class="nav-link" href="/user">Home<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/user/user">Profile</a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="/user/attendance">Attendance</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/user/dpr">DPR</a>
-        </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
-            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }} <span class="caret"></span>
-            </a>
-
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                </a>
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </div>
-        </li>
-    </ul>
-  </div>
-</nav>
+@section('content')
 <div class="container">
-    <table class="table">
-        <thead>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </thead>
-        <tbody>
-            <!-- @foreach($records as $record)
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            @endforeach
-            -->
-        </tbody> 
-    </table>
-</div>
-</body>
-</html>
+        <div class="jumbotron">
+        <div class="row">
+            <form method="GET">
+                <input type="date" name="start" value="{{$start}}" />
+                <input type="date" name="end" value="{{$end}}" />
+                <input type="submit" value="search" />
+            </form>
+        </div>
+        </div>
+        @if(!empty($records))
+            <p>got some data</p>
+            <div class="row">
+                <div class="col-md-12">
+                    <span>Showing from Date : </span><span>{{$start}}</span><span> to </span><span>{{$end}}</span>
+                    <table class="table">
+                        <thead>
+                            <th>S.no</th>
+                            <th>Circle</th>
+                            <th>Manager</th>
+                            <th>Project</th>
+                            <th>Time-in</th>
+                            <th>Time-out</th>
+                        </thead>
+                        <tbody>
+                            @foreach($records as $record)
+                                <tr>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$record->circle}}</td>
+                                    <td>{{$record->manager}}</td>
+                                    <td>{{$record->project}}</td>
+                                    <td>{{$record->created_at}}</td>
+                                    <td>{{$record->updated_at}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        @endif
+    </div>
+@endsection

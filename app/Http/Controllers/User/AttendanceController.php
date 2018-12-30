@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Attendance;
 use Validator;
+use Auth;
 
 class AttendanceController extends Controller
 {
@@ -14,9 +15,19 @@ class AttendanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {   
-        return view('user.attendance');
+        $empid = Auth::user()->emp_id;
+        $start = $request->input('start');
+        $end = $request->input('end');
+        if($empid == '' || $start == '' || $end == '')
+            $records = [];
+        else{
+            $records = Attendance::findAttendance($empid,$start,$end);
+            //print($records);
+            //die;
+        }
+        return view('user.attendance')->withRecords($records)->withEmpid($empid)->withStart($start)->withEnd($end);
     }
 
     /**
