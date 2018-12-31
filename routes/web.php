@@ -38,4 +38,5 @@ Route::namespace('Admin')
 	Route::resource('users','UserController');
 	Route::resource('attendance','AttendanceController');
 	Route::resource('circle','CircleController');
+	Route::delete('/attendance/{id}/{empid}/{start}/{end}','AttendanceController@destroy')->name('attendance.destroy');
 });

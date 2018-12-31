@@ -70,7 +70,11 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <a href="{{route('attendance.edit',$record->id)}}" class="dropdown-item">Edit</a>
-                                                <a href="{{route('attendance.edit',$record->id)}}" class="dropdown-item">Edit</a>
+                                                {!! Form::open([
+                                                    'method' => 'DELETE',
+                                                    'route' => ['attendance.destroy',$record->id,$empid,$start,$end]]) !!}
+                                                <button type="submit" class="dropdown-item">Delete</button>
+                                                {!! Form::close() !!}
                                             </div>
                                         </div>
                                     </td>

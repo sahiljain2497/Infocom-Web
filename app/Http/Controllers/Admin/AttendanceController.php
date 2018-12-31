@@ -13,7 +13,7 @@ class AttendanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(request $request)
+    public function index(Request $request)
     {
         $empid = $request->input('emp_id');
         $start = $request->input('start');
@@ -68,8 +68,8 @@ class AttendanceController extends Controller
      */
     public function edit($id)
     {   
-        $data = Attendance::where('id','=',$id)->first();
-        return view('admin.attendance.edit')->withData($data);
+        $attendance = Attendance::where('id','=',$id)->first();
+        return view('admin.attendance.edit')->withAttendance($attendance);
     }
 
     /**
@@ -90,8 +90,9 @@ class AttendanceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id,$empid,$start,$end)
+    {   
+        Attendance::where('id',$id)->delete();
+        return redirect('/admin/attendance/?emp_id='.$empid.'&start='.$start.'&end='.$end);
     }
 }

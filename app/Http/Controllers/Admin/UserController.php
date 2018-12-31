@@ -18,8 +18,8 @@ class UserController extends Controller
     public function index(request $request)
     {   
         $empid = $request->input('search-id');
-        $users = User::searchId($empid);
-        return view('admin.user.index')->withUsers($users);
+        $users = $empid ? User::searchId($empid)->paginate(10) : User::paginate(10);
+        return view('admin.user.index')->withUsers($users)->withSearch($empid);
     }
 
     /**
@@ -51,7 +51,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = DB::table('users')->where('id',$id)->first();
+        $user = User::where('id',$id)->first();
         return view('admin.user.show')->withUser($user);
     }
 
@@ -103,7 +103,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('users')->where('id',$id)->delete();
+        User::where('id',$id)->delete();
         return redirect()->route('users.index');
     }
 }

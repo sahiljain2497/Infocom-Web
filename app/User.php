@@ -38,8 +38,6 @@ class User extends Authenticatable
     ];
 
     public function scopeSearchId($query,$keyword){ 
-        if($keyword != '')
-            return $query->where('emp_id','like','%'.$keyword)->get();
-        return $query->get();
+        return $query->where('emp_id','like','%'.$keyword);
     }
 }
