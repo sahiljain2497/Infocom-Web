@@ -83,6 +83,7 @@
                         </tbody>
                     </table>
                 </div>
+                {{ $records->onEachSide(2)->appends(['emp_id' => $empid, 'start'=> $start,'end'=> $end ])->links() }} 	
             </div>
         @endif
     </div>
