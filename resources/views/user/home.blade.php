@@ -1,7 +1,11 @@
 @extends('layouts.user')
 
 @section('content')
-    <div class="container">
+    <div class="classic-container">
+        <div class="jumbotron">
+            <h1 class="text-center">WELCOME</h1>
+        </div>
+        <hr/>
     @if($status)
     <form method="POST" action="{{route('home.update',$data->id)}}">
         {{ csrf_field() }}
@@ -12,11 +16,11 @@
         {{ method_field('POST') }}
     @endif
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-3 label-div">
                 <label>Circle :</label>
             </div>
-            <div class="col-sm-6">    
-                <select id="circle" name="circle" >
+            <div class="col-sm-9">    
+                <select id="circle" name="circle" class="form-control" >
                     @if(!empty($data))
                         @foreach($circles as $circle)
                             <option {{$data->circle == $circle->region? 'selected':'' }}>
@@ -34,45 +38,54 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-3 label-div">
                 <label>Manager :</label>
             </div>
-            <div class="col-sm-6">    
-                <input id="manager" name="manager" value="{{ !empty($data) ? $data->manager : ''}}"/>
+            <div class="col-sm-9">    
+                <input id="manager" class="form-control" name="manager" value="{{ !empty($data) ? $data->manager : ''}}"/>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-3 label-div">
                 <label>Date : </label>
             </div>
-            <div class="col-sm-6">
-                <input type="date" name="date" value="<?php echo date('Y-m-d'); ?>" readonly/>
+            <div class="col-sm-9">
+                <input type="date" class="form-control" name="date" value="<?php echo date('Y-m-d'); ?>" readonly/>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-3 label-div">
                 <label>project : </label>
             </div>
-            <div class="col-sm-6">
-                <input type="text" name="project" value="{{ $status ? $data->project : '' }}" {{ $status ? 'readonly' : '' }} >
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="project" value="{{ $status ? $data->project : '' }}" {{ $status ? 'readonly' : '' }} >
             </div>
         </div>
         @if(empty($data->timeout))
             @if(!$status)
-            <input type="submit" class="btn btn-lg btn-primary" value="check-in" />
-            @else
-            <div class="row">
-                <div class="col-sm-6">
-                    <label>Timein : </label>
-                </div>
-                <div class="col-sm-6">
-                    <input type="text" value="{{$data->created_at}}" readonly>
+            <div class="row text-center">
+                <div class="col-sm-12">
+                <input type="submit" class="btn btn-lg btn-primary check-btn" value="CHECK IN" />
                 </div>
             </div>
-            <input type="submit" class="btn btn-lg btn-primary" value="check-out" />
+            @else
+            <div class="row">
+                <div class="col-sm-3 label-div">
+                    <label>Timein : </label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" value="{{$data->created_at}}" readonly>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-sm-12">
+                    <input type="submit" class="btn btn-primary check-btn" value="CHECK OUT" />
+                </div>
+            </div>
             @endif
         @else
-            <p>you have checked out for today.Contact admin for further changes</p>
+            <hr/>
+            <p class="text-center">ALREADY CHECKED OUT IN FOR TODAY. CONTACT ADMIN FOR FURTHER CHANGES.</p>
         @endif
         </form>
     </div>
