@@ -70,5 +70,6 @@
             </table>
         </div>
     </div>
+    {{ $users->onEachSide(2)->links() }} 	
 </div>
 @endsection
