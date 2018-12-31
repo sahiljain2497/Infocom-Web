@@ -1,14 +1,18 @@
 @extends('layouts.admin')
-
+@section('stylesheets')
+<link href="{{ asset('css/admin/circle.css') }}" rel="stylesheet">
+@endsection
 @section('content')
-    <div class="container">
+    <div class="classic-container">
         <div class="jumbotron">
-            <h1>CIRCLES</h1>
+            <h1 class="text-center">CIRCLES</h1>
+        </div>
+        <hr/>
+        <div class="row" style="margin-bottom:10px;">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addCircle">ADD NEW CIRCLE</button>
         </div>
         <div class="row">
-            <button data-toggle="modal" data-target="#addCircle">Add new Circle</button>
-        </div>
-        <div class="row">
+            <div class="table-container">
             <table class="table">
                 <thead>
                     <th>S.no</th>
@@ -21,13 +25,26 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$circle->region}}</td>
                             <td>
-                                <button>Edit</button>
-                                <button>Delete</button>
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                        Action
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a href="{{route('circle.edit',$circle->id)}}" class="dropdown-item">Edit</a>
+                                        {!! Form::open([
+                                            'method' => 'DELETE',
+                                            'route' => ['circle.destroy',$circle->id]]) !!}
+                                        <button type="submit" class="dropdown-item">Delete</button>
+                                        {!! Form::close() !!}
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+            {{ $circles->onEachSide(2)->links() }}
+            </div>
         </div>
     </div>
     <div class="modal" id="addCircle">

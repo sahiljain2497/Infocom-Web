@@ -31,6 +31,22 @@ body{
     background: #515151;
     color:white;
 }
+.classic-container{
+    width: 90%;
+    margin: 2% auto;
+}
+.row{
+    width: 97%;
+    margin: 0 auto;
+}
+
+.table-container{
+    overflow-x:auto;
+    width:100%;
+}
+.table tbody{
+    padding-bottom: 100px;
+}
 
 /*form css*/
 

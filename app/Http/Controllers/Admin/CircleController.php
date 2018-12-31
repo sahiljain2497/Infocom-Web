@@ -16,7 +16,7 @@ class CircleController extends Controller
      */
     public function index()
     {
-        $circle = Circle::all();
+        $circle = Circle::paginate(10);
         return view('admin.circle.index')->withCircles($circle);
     }
 
