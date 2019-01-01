@@ -90,9 +90,13 @@ class AttendanceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id,$empid,$start,$end)
+    public function destroy($id)
     {   
+        $start = explode(" ",$_POST['start']);
+        $start = $start[0];
+        $end = explode(" ",$_POST['end']);
+        $end = $end[0];
         Attendance::where('id',$id)->delete();
-        return redirect('/admin/attendance/?emp_id='.$empid.'&start='.$start.'&end='.$end);
+        return redirect()->route('attendance.index',['emp_id'=>$_POST['empid'],'start'=>$start,'end'=>$end]);
     }
 }

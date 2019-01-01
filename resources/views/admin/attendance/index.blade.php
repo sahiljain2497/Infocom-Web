@@ -70,9 +70,11 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <a href="{{route('attendance.edit',$record->id)}}" class="dropdown-item">Edit</a>
-                                                {!! Form::open([
-                                                    'method' => 'DELETE',
-                                                    'route' => ['attendance.destroy',$record->id,$empid,$start,$end]]) !!}
+                                                {!! Form::open(['route' => ['attendance.destroy',$record->id]]) !!}
+                                                    {{ Form::hidden('_method', 'DELETE') }}
+                                                    {{ Form::hidden('empid', $record->emp_id) }}
+                                                    {{ Form::hidden('start', $start) }}
+                                                    {{ Form::hidden('end', $end) }}
                                                 <button type="submit" class="dropdown-item">Delete</button>
                                                 {!! Form::close() !!}
                                             </div>
