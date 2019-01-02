@@ -49,6 +49,9 @@ Route::namespace('Coordinator')
 	Route::resource('attendance','AttendanceController',[
 		'as' => 'coordinator'
 	]);
+	Route::resource('dpr','DprController',[
+		'as' => 'coordinator'
+	]);
 });
 
 Route::namespace('Admin')
@@ -59,4 +62,6 @@ Route::namespace('Admin')
 	Route::resource('users','UserController');
 	Route::resource('attendance','AttendanceController');
 	Route::resource('circle','CircleController');
+	Route::resource('dpr','DprController');
+	Route::resource('invoice','InvoiceController');
 });
