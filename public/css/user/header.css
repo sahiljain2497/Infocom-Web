@@ -72,7 +72,12 @@ body{
 .check-btn{
     margin-top:10px;
 }
-
+.search-btn{
+    margin-top:10px;
+    line-height: 1.6;
+    margin-bottom: 3px;
+    width:250px ;
+}
 @media only screen and (max-width:520px){
     .nav-item{
         border-right: 0px;

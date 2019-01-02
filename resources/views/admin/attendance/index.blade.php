@@ -40,7 +40,7 @@
                 </div>
             </form>
         </div>
-        @if(!empty($records))
+        @if(!($records))
             <div class="row">
                 <div class="table-container">
                     <p style="font-size: 20px;text-align: center;font-weight: 599;"><span>Showing Records for <span>{{$empid}}</span> from date : </span><span>{{$start}}</span><span> to </span><span>{{$end}}</span></p>

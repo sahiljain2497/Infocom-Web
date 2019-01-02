@@ -23,9 +23,9 @@ class AttendanceController extends Controller
         if($empid == '' || $start == '' || $end == '')
             $records = [];
         else{
-            $records = Attendance::findAttendance($empid,$start,$end);
-            //print($records);
-            //die;
+            $records = Attendance::findAttendance($empid,$start,$end)->paginate(10);
+            // print($records);
+            // die;
         }
         return view('user.attendance')->withRecords($records)->withEmpid($empid)->withStart($start)->withEnd($end);
     }
