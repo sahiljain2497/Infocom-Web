@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Auth;
+use Validator;
 
 class UserController extends Controller
 {
@@ -73,7 +74,23 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $v = Validator::make($request->all(),[
+            'emp_id' => 'required',
+            'aadhar' => 'required',
+            'name' => 'required|max:255',
+            'email' => 'required|max:255',
+            'mobile' => 'required',
+            'dob' => 'required',
+        ]);
+        if($v->fails())
+            return redirect()->route('coordinator.user.index')->withErrors($v);
+        else{
+            User::where('id',$id)->update(['emp_id' => $request->emp_id,
+            'name' => $request->name,'aadhar' => $request->aadhar, 'email' => $request->email,
+             'mobile' => $request->mobile, 'dob' => $request->dob, 'pan' => $request->pan,
+             'experience' => $request->experience ]);
+            return redirect()->route('coordinator.user.index');
+        }
     }
 
     /**

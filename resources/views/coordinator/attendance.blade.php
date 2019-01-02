@@ -1,21 +1,41 @@
 @extends('layouts.coordinator')
 
 @section('content')
-<div class="container">
+<div class="classic-container">
         <div class="jumbotron">
-        <div class="row">
+            <h1 class="text-center">MY ATTENDANCE</h1>
+        </div>
+        <hr/>
+        <div class="form-container">
             <form method="GET">
-                <input type="date" name="start" value="{{$start}}" />
-                <input type="date" name="end" value="{{$end}}" />
-                <input type="submit" value="search" />
+                <div class="row form-row">
+                    <div class="col-sm-3 label-div">
+                        <label>Start Date</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="date" name="start" value="{{$start}}" class="form-control" />
+                    </div>
+                </div>
+                <div class="row form-row">
+                    <div class="col-sm-3 label-div">
+                        <label>End Date</label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="date" name="end" value="{{$end}}" class="form-control"/>
+                    </div>
+                </div>
+                <div class="row form-row">
+                    <div class="col-sm-12 text-center">
+                        <input type="submit" value="SEARCH" class="btn btn-primary search-btn" />
+                    </div>
+                </div>
             </form>
         </div>
-        </div>
+        <hr/>
         @if(!empty($records))
-            <p>got some data</p>
             <div class="row">
                 <div class="col-md-12">
-                    <span>Showing from Date : </span><span>{{$start}}</span><span> to </span><span>{{$end}}</span>
+                <p style="font-size: 20px;text-align: center;font-weight: 599;"><span>Showing Records for <span>{{$empid}}</span> from date : </span><span>{{$start}}</span><span> to </span><span>{{$end}}</span></p>
                     <table class="table">
                         <thead>
                             <th>S.no</th>

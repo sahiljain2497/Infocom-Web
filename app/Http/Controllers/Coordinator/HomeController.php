@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Attendance;
 use App\Circle;
 use Auth;
+use Validator;
 
 class HomeController extends Controller
 {
@@ -46,7 +47,30 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $v = Validator::make($request->all(),[
+            'circle' => 'required',
+            'manager' => 'required',
+            'date' => 'required',
+            'project' => 'required'
+        ]);
+        if($v->fails()){
+            print($v->messages());
+            die;
+            return redirect()->route('coordinator.home.index')->withErrors($v);}
+        else{
+            //create attendance
+            $id = Auth::user()->emp_id;
+            $name = Auth::user()->name;
+            $designation = Auth::user()->designation;
+            $mobile = Auth::user()->mobile;
+            Attendance::forceCreate(['emp_id' => $id,'name' => $name,
+            'designation' => $designation,
+            'mobile' => $mobile,'circle' => $request->circle,
+            'manager' => $request->manager,
+            'project' => $request->project,
+            'date' => $request->date ]);
+            return redirect()->route('coordinator.home.index');
+        }
     }
 
     /**
@@ -80,7 +104,10 @@ class HomeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $record = Attendance::where('id','=',$id)->first();
+        $record->timeout = true;
+        $record->save();
+        return redirect()->route('coordinator.home.index');
     }
 
     /**
