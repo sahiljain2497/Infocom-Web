@@ -4,7 +4,7 @@
 }
 .row{
     width: 97%;
-    margin: 0 auto;
+    margin: 1% auto;
 }
 .form-control{
     display: inline;
@@ -28,7 +28,6 @@
 .add-user-div{
     text-align: right;
 }
-
 @media only screen and (max-width:590px){
     .add-user-div,
     .search-user-div{
