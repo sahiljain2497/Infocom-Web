@@ -13,7 +13,9 @@ class BaseController extends Controller
         switch(Auth::user()->type)
         {
         	case User::ADMIN_TYPE :
-        		return '/admin';
+                return '/admin';
+            case User::COORDINATOR_TYPE :
+                return '/coordinator/home';
             default :
                 return '/user/home';
         }

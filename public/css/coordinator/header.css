@@ -1,0 +1,86 @@
+/*navbar css */
+.navbar{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.navbar-brand{
+    font-size: 20px;
+}
+.nav-item{
+    padding-left: 10px;
+    padding-right: 10px;
+    border-right:1px solid lightgray;
+}
+.nav-item:last-child{
+    border-right: 0px;
+}
+.nav-link{
+    font-size: 17px;
+}
+.user-link{
+    font-size: 17px;
+    color:#555;
+}
+/*global*/
+
+body{
+    background:white;
+}
+
+.jumbotron{
+    background: #515151;
+    color:white;
+}
+.classic-container{
+    width: 90%;
+    margin: 2% auto;
+}
+.row{
+    width: 97%;
+    margin: 0 auto;
+}
+
+.table-container{
+    overflow-x:auto;
+    width:100%;
+}
+.table tbody{
+    padding-bottom: 100px;
+}
+
+/*form css*/
+
+.form-row{
+    margin-bottom:1%;
+}
+.form-container{
+    width:70%;
+    margin:5% auto;
+}
+.dropdown-item{
+    cursor: pointer;
+}
+
+/* label */
+
+.label-div{
+    text-align: left;
+    line-height: 2.5;
+    font-weight: 600;
+}
+
+.check-btn{
+    margin-top:10px;
+}
+
+@media only screen and (max-width:520px){
+    .nav-item{
+        border-right: 0px;
+    }
+    .form-container{
+        width: 90%;
+    }
+    .form-row{
+        margin-bottom: 3%;
+    }
+}

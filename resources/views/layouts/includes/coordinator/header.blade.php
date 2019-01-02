@@ -7,13 +7,16 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item {{ Request::segment(2) == 'home' ? 'active' : '' }}">
-                <a class="nav-link" href="/user/home"><i class="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/coordinator/home"><i class="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item {{ Request::segment(2) == 'user' ? 'active' : '' }}">
-                <a class="nav-link" href="/user/user"><i class="fas fa-user"></i> Profile</a>
+                <a class="nav-link" href="/coordinator/user"><i class="fas fa-user"></i> Profile</a>
             </li>
             <li class="nav-item {{ Request::segment(2) == 'attendance' ? 'active' : '' }}">
-                <a class="nav-link" href="/user/attendance"><i class="fas fa-clipboard-list"></i> Attendance</a>
+                <a class="nav-link" href="/coordinator/attendance"><i class="fas fa-clipboard-list"></i> Attendance</a>
+            </li>
+            <li class="nav-item {{ Request::segment(2) == 'dpr' ? 'active' : '' }}">
+                <a class="nav-link" href="/coordinator/dpr">DPR</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">

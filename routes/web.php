@@ -30,6 +30,15 @@ Route::namespace('User')
 	Route::resource('attendance','AttendanceController');
 });
 
+Route::namespace('Coordinator')
+	->prefix('coordinator')
+	->middleware(['is_coordinator'])
+	->group(function () {
+	Route::resource('home', 'HomeController');
+	Route::resource('user','UserController');
+	Route::resource('attendance','AttendanceController');
+});
+
 Route::namespace('Admin')
 	->prefix('admin')
 	->middleware(['is_admin'])
