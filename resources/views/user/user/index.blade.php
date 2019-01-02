@@ -15,6 +15,9 @@
             </div>
             <div class="col-sm-9">
                 <input type="text" name="emp_id" value="{{$user->emp_id}}" readonly class="form-control"/>
+                @if($errors->has('emp_id'))
+                    <span style="color:red;">{{$errors->first('emp_id')}}</span>
+                @endif
             </div>
         </div>
         <div class="row form-row">
@@ -23,6 +26,9 @@
             </div>
             <div class="col-sm-9">
                 <input type="text" name="name" value="{{$user->name}}" class="form-control"/>
+                @if($errors->has('name'))
+                    <span style="color:red;">{{$errors->first('name')}}</span>
+                @endif
             </div>
         </div>
         <div class="row form-row">
@@ -31,6 +37,9 @@
             </div>
             <div class="col-sm-9">
                 <input type="text" name="email" value="{{$user->email}}" class="form-control"/>
+                @if($errors->has('email'))
+                    <span style="color:red;">{{$errors->first('email')}}</span>
+                @endif
             </div>
         </div>
         <div class="row form-row">
@@ -47,6 +56,9 @@
             </div>
             <div class="col-sm-9">
                 <input type="text" name="mobile" value="{{$user->mobile}}" class="form-control"/>
+                @if($errors->has('mobile'))
+                    <span style="color:red;">{{$errors->first('mobile')}}</span>
+                @endif
             </div>
         </div>
         <div class="row form-row">
@@ -55,6 +67,9 @@
             </div>
             <div class="col-sm-9">
                 <input type="date" name="dob" value="{{$user->dob}}" class="form-control"/>
+                @if($errors->has('dob'))
+                    <span style="color:red;">{{$errors->first('dob')}}</span>
+                @endif
             </div>
         </div>
         <div class="row form-row">
@@ -63,6 +78,9 @@
             </div>
             <div class="col-sm-9">
                 <input type="text" name="aadhar" value="{{$user->aadhar}}" class="form-control"/>
+                @if($errors->has('aadhar'))
+                    <span style="color:red;">{{$errors->first('aadhar')}}</span>
+                @endif
             </div>
         </div>
         <div class="row form-row">

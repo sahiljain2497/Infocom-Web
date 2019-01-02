@@ -53,10 +53,8 @@ class HomeController extends Controller
             'date' => 'required',
             'project' => 'required'
         ]);
-        if($v->fails()){
-            print($v->messages());
-            die;
-            return redirect()->route('user.home.index')->withErrors($v);}
+        if($v->fails())
+            return redirect()->route('user.home.index')->withErrors($v);
         else{
             //create attendance
             $id = Auth::user()->emp_id;

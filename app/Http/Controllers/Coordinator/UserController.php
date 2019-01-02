@@ -82,8 +82,8 @@ class UserController extends Controller
             'mobile' => 'required',
             'dob' => 'required',
         ]);
-        if($v->fails())
-            return redirect()->route('coordinator.user.index')->withErrors($v);
+        if($v->fails()){
+            return redirect()->route('coordinator.user.index')->withErrors($v);}
         else{
             User::where('id',$id)->update(['emp_id' => $request->emp_id,
             'name' => $request->name,'aadhar' => $request->aadhar, 'email' => $request->email,
