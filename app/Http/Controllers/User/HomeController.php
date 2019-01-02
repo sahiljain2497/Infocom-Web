@@ -56,7 +56,7 @@ class HomeController extends Controller
         if($v->fails()){
             print($v->messages());
             die;
-            return redirect()->route('home.index')->withErrors($v);}
+            return redirect()->route('user.home.index')->withErrors($v);}
         else{
             //create attendance
             $id = Auth::user()->emp_id;
@@ -69,7 +69,7 @@ class HomeController extends Controller
             'manager' => $request->manager,
             'project' => $request->project,
             'date' => $request->date ]);
-            return redirect()->route('home.index');
+            return redirect()->route('user.home.index');
         }
     }
 
@@ -107,7 +107,7 @@ class HomeController extends Controller
         $record = Attendance::where('id','=',$id)->first();
         $record->timeout = true;
         $record->save();
-        return redirect()->route('home.index');
+        return redirect()->route('user.home.index');
     }
 
     /**

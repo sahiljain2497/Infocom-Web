@@ -5,7 +5,7 @@
     <div class="jumbotron">
         <h1>My Profile : </h1>
     </div>
-    <form method="POST" action="{{route('user.update',$user->id)}}">
+    <form method="POST" action="{{route('user.user.update',$user->id)}}">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}
         <div class="row">

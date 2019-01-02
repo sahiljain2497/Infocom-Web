@@ -7,11 +7,11 @@
         </div>
         <hr/>
     @if($status)
-    <form method="POST" action="{{route('home.update',$data->id)}}">
+    <form method="POST" action="{{route('user.home.update',$data->id)}}">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}
     @else
-    <form method="POST" action="{{route('home.store')}}">
+    <form method="POST" action="{{route('user.home.store')}}">
         {{ csrf_field() }}
         {{ method_field('POST') }}
     @endif

@@ -86,13 +86,13 @@ class UserController extends Controller
             'dob' => 'required',
         ]);
         if($v->fails())
-            return redirect()->route('user.index')->withErrors($v);
+            return redirect()->route('user.user.index')->withErrors($v);
         else{
             DB::table('users')->where('id',$id)->update(['emp_id' => $request->emp_id,
             'name' => $request->name,'aadhar' => $request->aadhar, 'email' => $request->email,
              'mobile' => $request->mobile, 'dob' => $request->dob, 'pan' => $request->pan,
              'experience' => $request->experience ]);
-            return redirect()->route('user.index');
+            return redirect()->route('user.user.index');
         }
     }
 

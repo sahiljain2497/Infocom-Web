@@ -25,18 +25,30 @@ Route::namespace('User')
 	->prefix('user')
 	->middleware(['is_user'])
 	->group(function () {
-	Route::resource('home', 'HomeController');
-	Route::resource('user','UserController');
-	Route::resource('attendance','AttendanceController');
+	Route::resource('home', 'HomeController',[
+		'as' => 'user'
+	]);
+	Route::resource('user','UserController',[
+		'as' => 'user'
+	]);
+	Route::resource('attendance','AttendanceController',[
+		'as' => 'user'
+	]);
 });
 
 Route::namespace('Coordinator')
 	->prefix('coordinator')
 	->middleware(['is_coordinator'])
 	->group(function () {
-	Route::resource('home', 'HomeController');
-	Route::resource('user','UserController');
-	Route::resource('attendance','AttendanceController');
+	Route::resource('home', 'HomeController',[
+		'as' => 'coordinator'
+	]);
+	Route::resource('user','UserController',[
+		'as' => 'coordinator'
+	]);
+	Route::resource('attendance','AttendanceController',[
+		'as' => 'coordinator'
+	]);
 });
 
 Route::namespace('Admin')
