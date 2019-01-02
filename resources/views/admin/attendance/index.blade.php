@@ -7,6 +7,13 @@
         <div class="jumbotron">
             <h1 class="text-center">ATTENDANCE RECORDS</h1>
         </div>
+        <hr/>
+        @if(Session::has('delete-message'))
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{Session::get('delete-message')}}</strong>
+        </div>
+        @endif
         <div class="form-container">
             <form method="GET">
                 <div class="row form-row">
@@ -40,7 +47,7 @@
                 </div>
             </form>
         </div>
-        @if(!($records))
+        @if(count($records) > 0)
             <div class="row">
                 <div class="table-container">
                     <p style="font-size: 20px;text-align: center;font-weight: 599;"><span>Showing Records for <span>{{$empid}}</span> from date : </span><span>{{$start}}</span><span> to </span><span>{{$end}}</span></p>

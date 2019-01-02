@@ -7,6 +7,13 @@
         <div class="jumbotron">
                 <h1 class="text-center">EDIT ATTENDANCE INFO</h1>
         </div>
+        <hr/>
+        @if(Session::has('edit-message'))
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{Session::get('edit-message')}}</strong>
+        </div>
+        @endif
         <div class="form-container">
             <form method="POST" action="{{route('attendance.update',$attendance->id)}}">
                     {{ csrf_field() }}
@@ -24,7 +31,7 @@
                         <label>Name : </label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="text" name="name" class="form-control" value="{{$attendance->name}}"/>
+                        <input type="text" name="name" class="form-control" value="{{$attendance->name}}" readonly/>
                     </div>
                 </div>
                 <div class="row form-row">
@@ -32,7 +39,7 @@
                         <label>Designation : </label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="text" name="designation" class="form-control" value="{{$attendance->designation}}"/>
+                        <input type="text" name="designation" class="form-control" value="{{$attendance->designation}}" readonly/>
                     </div>
                 </div>
                 <div class="row form-row">
@@ -40,7 +47,15 @@
                         <label>Mobile : </label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="text" name="mobile" class="form-control" value="{{$attendance->mobile}}"/>
+                        <input type="text" name="mobile" class="form-control" value="{{$attendance->mobile}}" readonly/>
+                    </div>
+                </div>
+                <div class="row form-row">
+                    <div class="col-sm-3 label-div">
+                        <label>Date : </label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="date" name="date" class="form-control" value="{{$attendance->date}}" readonly/>
                     </div>
                 </div>
                 <div class="row form-row">
@@ -49,14 +64,9 @@
                     </div>
                     <div class="col-sm-9">
                         <input type="text" name="circle" class="form-control" value="{{$attendance->circle}}"/>
-                    </div>
-                </div>
-                <div class="row form-row">
-                    <div class="col-sm-3 label-div">
-                        <label>Date : </label>
-                    </div>
-                    <div class="col-sm-9">
-                        <input type="date" name="date" class="form-control" value="{{$attendance->date}}"/>
+                        @if($errors->has('circle'))
+                            <span style="color:red;">{{$errors->first('circle')}}</span>
+                        @endif
                     </div>
                 </div>
                 <div class="row form-row">
@@ -65,6 +75,9 @@
                     </div>
                     <div class="col-sm-9">
                         <input type="text" name="manager" class="form-control" value="{{$attendance->manager}}"/>
+                        @if($errors->has('manager'))
+                            <span style="color:red;">{{$errors->first('manager')}}</span>
+                        @endif
                     </div>
                 </div>
                 <div class="row form-row">
@@ -72,7 +85,10 @@
                         <label>Project : </label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="text" name="joining" class="form-control" value="{{$attendance->project}}"/>
+                        <input type="text" name="project" class="form-control" value="{{$attendance->project}}"/>
+                        @if($errors->has('project'))
+                            <span style="color:red;">{{$errors->first('project')}}</span>
+                        @endif
                     </div>
                 </div>
                 <div class="row form-row">
@@ -81,6 +97,9 @@
                     </div>
                     <div class="col-sm-9">
                         <input type="text" name="timein" class="form-control" value="{{$attendance->created_at}}"/>
+                        @if($errors->has('timein'))
+                            <span style="color:red;">{{$errors->first('timein')}}</span>
+                        @endif
                     </div>
                 </div>
                 <div class="row form-row">
@@ -89,6 +108,9 @@
                     </div>
                     <div class="col-sm-9">
                         <input type="text" name="timeout" class="form-control" value="{{$attendance->updated_at}}"/>
+                        @if($errors->has('timeout'))
+                            <span style="color:red;">{{$errors->first('timeout')}}</span>
+                        @endif
                     </div>
                 </div>
                 <div class="row text-center form-row" style="margin-top:10px">

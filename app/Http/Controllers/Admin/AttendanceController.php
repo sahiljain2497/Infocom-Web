@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Attendance;
+use Validator;
 
 class AttendanceController extends Controller
 {
@@ -80,10 +81,23 @@ class AttendanceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
+    {   
+        $v = Validator::make($request->all(),[
+            'circle' => 'required',
+            'manager' => 'required',
+            'project' => 'required',
+            'timein' =>'required',
+            'timeout' => 'required'
+        ]);
+        if($v->fails())
+            return redirect()->route('attendance.edit',$id)->withErrors($v);
+        else{
+            Attendance::find($id)->update(['created_at' =>$request->timein,
+            'updated_at' =>$request->timeout,'circle'=>$request->circle,
+            'project' => $request->project, 'manager' => $request->manager]);
+            return redirect()->route('attendance.edit',$id)->with('edit-message','ATTENDANCE EDITED SUCCESSFULLY');
+        }   
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -97,6 +111,6 @@ class AttendanceController extends Controller
         $end = explode(" ",$_POST['end']);
         $end = $end[0];
         Attendance::where('id',$id)->delete();
-        return redirect()->route('attendance.index',['emp_id'=>$_POST['empid'],'start'=>$start,'end'=>$end]);
+        return redirect()->route('attendance.index',['emp_id'=>$_POST['empid'],'start'=>$start,'end'=>$end])->with('delete-message','RECORD DELETED SUCCESSFULLY');
     }
 }

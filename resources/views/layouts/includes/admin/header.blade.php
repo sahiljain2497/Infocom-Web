@@ -11,9 +11,11 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item {{ Request::segment(2) == '' ? 'active' : '' }}"><a class="nav-link" href="/admin/"><i class="fas fa-home"></i> Home</a></li>
-                <li class="nav-item {{ Request::segment(2) == 'users' ? 'active' : '' }}"><a class="nav-link" href="/admin/users"><i class="fas fa-users"></i> Users</a></li>
-                <li class="nav-item {{ Request::segment(2) == 'attendance' ? 'active' : '' }}"><a class="nav-link" href="/admin/attendance"><i class="fas fa-clipboard-list"></i> Attendance</a></li>
-                <li class="nav-item {{ Request::segment(2) == 'circle' ? 'active' : '' }}"><a class="nav-link" href="/admin/circle"><i class="fas fa-map-marker-alt"></i> Circle</a></li>
+                <li class="nav-item {{ Request::segment(2) == 'users' ? 'active' : '' }}"><a class="nav-link" href="{{route('users.index')}}"><i class="fas fa-users"></i> Users</a></li>
+                <li class="nav-item {{ Request::segment(2) == 'attendance' ? 'active' : '' }}"><a class="nav-link" href="{{route('attendance.index')}}"><i class="fas fa-clipboard-list"></i> Attendance</a></li>
+                <li class="nav-item {{ Request::segment(2) == 'circle' ? 'active' : '' }}"><a class="nav-link" href="{{route('circle.index')}}"><i class="fas fa-map-marker-alt"></i> Circle</a></li>
+                <li class="nav-item {{ Request::segment(2) == 'dpr' ? 'active' : '' }}"><a class="nav-link" href="{{route('dpr.index')}}"><i class="fas fa-map-marker-alt"></i> Dpr</a></li>
+                <li class="nav-item {{ Request::segment(2) == 'invoice' ? 'active' : '' }}"><a class="nav-link" href="{{route('invoice.index')}}"><i class="fas fa-map-marker-alt"></i> Invoice</a></li>
             </ul>
                     <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
