@@ -14,7 +14,7 @@ class DprController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.dpr.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class DprController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.dpr.create');
     }
 
     /**

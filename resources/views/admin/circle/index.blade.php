@@ -8,6 +8,24 @@
             <h1 class="text-center">CIRCLES</h1>
         </div>
         <hr/>
+        @if($errors->has('circle'))
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{$errors->first('circle')}}</strong>
+        </div>
+        @endif
+        @if(Session::has('success-message'))
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{Session::get('success-message')}}</strong>
+        </div>
+        @endif
+        @if(Session::has('delete-message'))
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{Session::get('delete-message')}}</strong>
+        </div>
+        @endif
         <div class="row" style="margin-bottom:10px;">
             <button class="btn btn-primary" data-toggle="modal" data-target="#addCircle">ADD NEW CIRCLE</button>
         </div>
@@ -60,6 +78,9 @@
                 <input type="text" name="circle" /> 
                 <input type="submit" value="Create"/>
             </form>
+            @if($errors->has('circle'))
+                <span style="color:red;">{{$errors->first('circle')}}</span>
+            @endif
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

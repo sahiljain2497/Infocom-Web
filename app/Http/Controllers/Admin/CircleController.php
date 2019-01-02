@@ -38,20 +38,16 @@ class CircleController extends Controller
      */
     public function store(Request $request)
     {
-        Circle::forceCreate(['region' => $request->circle]);
-        return redirect()->route('circle.index');
-        // $v = Validator::make($request->all(),[
-        //     'circle' => 'required'
-        // ]);
-        // if($v->fails()){
-        //     print($v->messages());
-        //     die;
-        //     //return redirect()->route('circle.index')->withErrors($v);
-        // }
-        // else{
-        //     Circle::forceCreate(['region' => $request->circle]);
-        //     return redirect()->route('circle.index');
-        // }
+        $v = Validator::make($request->all(),[
+            'circle' => 'required'
+        ]);
+        if($v->fails()){
+            return redirect()->route('circle.index')->withErrors($v);
+        }
+        else{
+            Circle::forceCreate(['region' => $request->circle]);
+            return redirect()->route('circle.index')->with('success-message','CIRCLE CREATED SUCCESSFULLY');
+        }
     }
 
     /**
@@ -73,7 +69,8 @@ class CircleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Circle::where('id','=',$id)->first();
+        return view('admin.circle.edit')->withData($data);
     }
 
     /**
@@ -85,7 +82,16 @@ class CircleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $v = Validator::make($request->all(),[
+            'circle' => 'required'
+        ]);
+        if($v->fails()){
+            return redirect()->route('circle.edit',$id)->withErrors($v);
+        }
+        else{
+            Circle::where('id','=',$id)->update(['region' => $request->circle]);
+            return redirect()->route('circle.edit',$id)->with('update-message','CIRCLE EDITED SUCCESSFULLY');
+        }
     }
 
     /**
@@ -96,6 +102,7 @@ class CircleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Circle::where('id',$id)->delete();
+        return redirect()->route('circle.index')->with('delete-message','CIRCLE DELETED SUCCESSFULLY');
     }
 }

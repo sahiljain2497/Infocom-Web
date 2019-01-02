@@ -14,7 +14,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.invoice.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.invoice.create');
     }
 
     /**
