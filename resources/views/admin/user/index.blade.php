@@ -7,14 +7,26 @@
     <div class="jumbotron text-center">
         <h1>USER RECORDS</h1>
     </div>
+    <hr/>
+    @if(Session::has('delete-message'))
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{Session::get('delete-message')}}</strong>
+        </div>
+    @endif
     <div class="row search-row">
-        <form method="GET">
-            @csrf
-            <div style="width: 80%;">
-            <input type="text" placeholder="Search Employee ID" name="search-id" class="form-control" style="width:250px;" value="{{$search}}"/><br/>
-            <input type="submit" value="Search" class="btn btn-primary search-btn" />
-            </div>
-        </form>
+        <div class="col-sm-6 search-user-div">
+            <form method="GET">
+                @csrf
+                <div>
+                <input type="text" placeholder="Search Employee ID" name="search-id" class="form-control" style="width:250px;" value="{{$search}}"/><br/>
+                <input type="submit" value="Search" class="btn btn-primary search-btn" />
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-6 add-user-div">
+            <a href="{{route('users.create')}}" class="btn btn-primary" style="width:250px;">ADD NEW USER</a>
+        </div>
     </div>
     <hr/>
     <div class="row">

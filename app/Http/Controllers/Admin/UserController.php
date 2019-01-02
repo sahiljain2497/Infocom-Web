@@ -28,8 +28,15 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $len = User::orderBy('id','desc')->first()->id + 1;
+        if($len < 10)
+            $emp_id = 'EMP00'.$len;
+        else if($len < 100)
+            $emp_id = 'EMP0'.$len;
+        else 
+            $emp_id = 'EMP'.$len;
+        return view('admin.user.create')->withEmpid($emp_id);
     }
 
     /**
@@ -40,7 +47,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request);
+        User::create($request->all());
+        $userId = User::where('emp_id','=',$request->emp_id)->first();
+        return redirect()->route('users.edit',$userId->id)->with('create-message','USER CREATED SUCCESSFULLY');
     }
 
     /**
@@ -85,13 +95,14 @@ class UserController extends Controller
             'dob' => 'required',
         ]);
         if($v->fails())
-            return redirect()->route('user.index')->withErrors($v);
+            return redirect()->route('users.edit',$id)->withErrors($v);
         else{
             DB::table('users')->where('id',$id)->update(['emp_id' => $request->emp_id,
             'name' => $request->name,'aadhar' => $request->aadhar, 'email' => $request->email,
-             'mobile' => $request->mobile, 'dob' => $request->dob, 'pan' => $request->pan,
-             'experience' => $request->experience , 'designation' => $request->designation, 'joining' => $request->joining  ]);
-            return redirect('admin/users');
+            'mobile' => $request->mobile, 'dob' => $request->dob, 'pan' => $request->pan,
+            'experience' => $request->experience , 'designation' => $request->designation,
+            'joining' => $request->joining, 'type' => $request->type  ]);
+            return redirect()->route('users.edit',$id)->with('update-message','USER UPDATED SUCCESSFULLY');
         }
     }
 
@@ -104,6 +115,6 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::where('id',$id)->delete();
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('delete-message','USER DELETED SUCCESSFULLY');
     }
 }
