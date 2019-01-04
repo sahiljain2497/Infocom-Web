@@ -54,8 +54,6 @@ class HomeController extends Controller
             'project' => 'required'
         ]);
         if($v->fails()){
-            print($v->messages());
-            die;
             return redirect()->route('coordinator.home.index')->withErrors($v);}
         else{
             //create attendance
