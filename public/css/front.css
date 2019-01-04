@@ -1,0 +1,148 @@
+html, body {
+    background-color: #fff;
+    color: #636b6f;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    height: 100vh;
+    margin: 0;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
+.content {
+    text-align: center;
+}
+
+.title {
+    font-size: 84px;
+}
+
+.links > a {
+    color: #636b6f;
+    padding: 0 25px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.m-b-md {
+    margin-bottom: 30px;
+}
+@media only screen and (max-width:700px){
+    .title{
+        font-size:48px;}
+}
+
+/* navbar */
+
+/*navbar css */
+.navbar{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.navbar-brand{
+    font-size: 20px;
+}
+.nav-item{
+    padding-left: 10px;
+    padding-right: 10px;
+    border-right:1px solid lightgray;
+}
+.nav-item:last-child{
+    border-right: 0px;
+}
+.nav-link{
+    font-size: 17px;
+}
+.user-link{
+    font-size: 17px;
+    color:#555;
+}
+/*global*/
+
+body{
+    background:white;
+}
+
+.jumbotron{
+    background: #515151;
+    color:white;
+}
+.classic-container{
+    width: 90%;
+    margin: 2% auto;
+}
+.row{
+    width: 97%;
+    margin: 0 auto;
+}
+
+.table-container{
+    overflow-x:auto;
+    width:100%;
+}
+.table tbody{
+    padding-bottom: 100px;
+}
+
+/*form css*/
+
+.form-row{
+    margin-bottom:1%;
+}
+.form-container{
+    width:70%;
+    margin:5% auto;
+}
+.dropdown-item{
+    cursor: pointer;
+}
+
+/* label */
+
+.label-div{
+    text-align: left;
+    line-height: 2.5;
+    font-weight: 600;
+}
+
+.check-btn{
+    margin-top:10px;
+}
+.search-btn{
+    margin-top:10px;
+    line-height: 1.6;
+    margin-bottom: 3px;
+    width:250px ;
+}
+@media only screen and (max-width:520px){
+    .nav-item{
+        border-right: 0px;
+    }
+    .form-container{
+        width: 90%;
+    }
+    .form-row{
+        margin-bottom: 3%;
+    }
+}
