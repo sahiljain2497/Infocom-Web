@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use DB;
 use Validator;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -47,7 +48,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
+        $request['password'] = Hash::make($request['password']);
         User::create($request->all());
         $userId = User::where('emp_id','=',$request->emp_id)->first();
         return redirect()->route('users.edit',$userId->id)->with('create-message','USER CREATED SUCCESSFULLY');

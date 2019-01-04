@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Invoice;
+use Illuminate\Support\Facades\Storage;
 
 class InvoiceController extends Controller
 {
@@ -34,8 +36,15 @@ class InvoiceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        if ($request->file('invoice_file')) {
+            $file     = $request->file('invoice_file');
+            $fileName   = time().'.'.$file->getClientOriginalExtension();
+            Storage::disk('local')->put('/invoices/'.$fileName,file_get_contents($file));
+            $request['invoice_path'] = $fileName;
+        }
+        Invoice::create($request->all());
+        return view('admin.invoice.index');
     }
 
     /**

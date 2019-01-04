@@ -61,30 +61,60 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="row form-row">
-                    <div class="col-sm-6 label-div">
-                        <label>Invoice No </label>
+                <form method="post" action="{{route('invoice.store')}}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row form-row">
+                        <div class="col-sm-6 label-div">
+                            <label>Invoice No </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input name="invoice_no" type="text" class="form-control"/>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control"/>
+                    <div class="row form-row">
+                        <div class="col-sm-6 label-div">
+                            <label>Invoice Type </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <select id="invoice_type" name="invoice_type" class="form-control" onchange="invoiceType()">
+                                <option value="Incoming">Incoming</option>
+                                <option value="Outgoing">Outgoing</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="row form-row">
-                    <div class="col-sm-6 label-div">
-                        <label>Select Invoice </label>
+                    <div class="row form-row sender-row">
+                        <div class="col-sm-6 label-div">
+                            <label>Sender : </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input name="sender_companyname" class="form-control">
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <label for="file-upload" class="custom-file-upload">
-                            <i class="fa fa-cloud-upload"></i> UPLOAD INVOICE
-                        </label>
-                        <input id="file-upload" type="file"/>
+                    <div class="row form-row reciever-row">
+                        <div class="col-sm-6 label-div">
+                            <label>Reciever : </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input name="reciever_companyname" class="form-control">
+                        </div>
                     </div>
-                </div>
-                <div class="row form-row" style="margin-top:30px;">
-                    <div class="col-sm-12 text-center">
-                        <button type="submit" class="btn btn-primary option-button">SAVE</button>
+                    <div class="row form-row">
+                        <div class="col-sm-6 label-div">
+                            <label>Select Invoice </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="file-upload" class="custom-file-upload">
+                                <i class="fa fa-cloud-upload"></i> UPLOAD INVOICE
+                            </label>
+                            <input id="file-upload" name="invoice_file" type="file"/>
+                        </div>
                     </div>
-                </div>
+                    <div class="row form-row" style="margin-top:30px;">
+                        <div class="col-sm-12 text-center">
+                            <button type="submit" class="btn btn-primary option-button">SAVE</button>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
