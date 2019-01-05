@@ -8,6 +8,8 @@ use App\Attendance;
 use App\Circle;
 use Auth;
 use Validator;
+use App\User;
+use Redirect;
 
 class HomeController extends Controller
 {
@@ -117,5 +119,10 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function markAsRead(){
+        $user = Auth::user();
+        $user->unreadNotifications->markAsRead();
+        return Redirect::back();
     }
 }

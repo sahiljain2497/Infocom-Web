@@ -48,10 +48,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $request['password'] = Hash::make($request['password']);
-        User::create($request->all());
-        $userId = User::where('emp_id','=',$request->emp_id)->first();
-        return redirect()->route('users.edit',$userId->id)->with('create-message','USER CREATED SUCCESSFULLY');
+        $v = Validator::make($request->all(),[
+            'name' => 'required',
+            'email' => 'required',
+            'mobile' => 'required',
+            'joining' => 'required',
+            'designation' => 'required',
+            'password' => 'required|confirmed|min:6',
+        ]);
+        if($v->fails()){
+            return redirect()->route('users.create')->withErrors($v);
+        }
+        else{
+            $request['password'] = Hash::make($request['password']);
+            User::create($request->all());
+            $userId = User::where('emp_id','=',$request->emp_id)->first();
+            return redirect()->route('users.edit',$userId->id)->with('create-message','USER CREATED SUCCESSFULLY');
+        }
     }
 
     /**
@@ -98,11 +111,9 @@ class UserController extends Controller
         if($v->fails())
             return redirect()->route('users.edit',$id)->withErrors($v);
         else{
-            DB::table('users')->where('id',$id)->update(['emp_id' => $request->emp_id,
-            'name' => $request->name,'aadhar' => $request->aadhar, 'email' => $request->email,
-            'mobile' => $request->mobile, 'dob' => $request->dob, 'pan' => $request->pan,
-            'experience' => $request->experience , 'designation' => $request->designation,
-            'joining' => $request->joining, 'type' => $request->type  ]);
+            $user = User::find($id);
+            $user->fill($request->all());
+            $user->save();
             return redirect()->route('users.edit',$id)->with('update-message','USER UPDATED SUCCESSFULLY');
         }
     }

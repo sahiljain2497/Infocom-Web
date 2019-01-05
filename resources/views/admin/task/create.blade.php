@@ -1,0 +1,40 @@
+@extends('layouts.admin')
+
+@section('content')
+    <div class="classic-container">
+        <div class="jumbotron">
+            <h1 class="text-center">CREATE TASK</h1>
+        </div>
+        <hr/>
+        @if(Session::has('message'))
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{Session::get('message')}}</strong>
+        </div>
+        @endif
+        <form method="post" action="{{route('task.store')}}">
+            @csrf
+            <div class="row form-row">
+                <div class="col-sm-3 label-div">
+                    <label>EMPID : </label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="to" placeholder="EMP ID" />
+                </div>
+            </div>
+            <div class="row form-row">
+                <div class="col-sm-3 label-div">
+                    <label>MESSAGE :</label>
+                </div>
+                <div class="col-sm-9">
+                    <textarea name="data" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="row form-row">
+                <div class="col-sm-12 text-center">
+                    <button class="btn btn-primary">SEND NOTIFICATION</button>
+                </div>
+            </div>
+        </form>
+    </div>
+@endsection

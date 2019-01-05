@@ -16,10 +16,27 @@
                 <a class="nav-link" href="/coordinator/attendance"><i class="fas fa-clipboard-list"></i> Attendance</a>
             </li>
             <li class="nav-item {{ Request::segment(2) == 'dpr' ? 'active' : '' }}">
-                <a class="nav-link" href="/coordinator/dpr">DPR</a>
+                <a class="nav-link" href="/coordinator/dpr"><i class="far fa-flag"></i> DPR</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <div class="dropdown nav-link">
+                    <a type="button" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fas fa-bell"></i> Notifications
+                    </a>
+                    <div class="dropdown-menu">
+                        @if(count(Auth::user()->unreadNotifications) > 0)
+                            @foreach(Auth::user()->unreadNotifications as $notification)
+                                <span class="dropdown-item" href="#">{{$notification->data['data']}}</span>    
+                            @endforeach
+                            <a class="dropdown-item" href="{{ route('coordinator.read')}}">Mark All Read</a>
+                        @else
+                        <a class="dropdown-item" href="{{ route('coordinator.read')}}">No New Notifications</a>
+                        @endif 
+                    </div>
+                </div> 
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
                         onclick="event.preventDefault();

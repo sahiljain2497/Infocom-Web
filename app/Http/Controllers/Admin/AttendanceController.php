@@ -36,7 +36,7 @@ class AttendanceController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.attendance.create');
     }
 
     /**

@@ -1,0 +1,11 @@
+.search-btn{
+    width:250px;
+}
+.create-row{
+    text-align: right;
+}
+@media only screen and (max-width:600px){
+    .create-row{
+        text-align: center;
+    }
+}

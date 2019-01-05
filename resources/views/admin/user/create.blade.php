@@ -25,6 +25,9 @@
                 </div>
                 <div class="col-sm-9">
                     <input type="text" name="name" class="form-control"/>
+                    @if($errors->has('name'))
+                        <span style="color:red;">{{$errors->first('name')}}</span>
+                    @endif
                 </div>
             </div>
             <div class="row form-row">
@@ -33,6 +36,9 @@
                 </div>
                 <div class="col-sm-9">
                     <input type="text" name="email" class="form-control"/>
+                    @if($errors->has('email'))
+                        <span style="color:red;">{{$errors->first('email')}}</span>
+                    @endif
                 </div>
             </div>
             <div class="row form-row">
@@ -41,6 +47,9 @@
                 </div>
                 <div class="col-sm-9">
                     <input type="text" name="designation" class="form-control"/>
+                    @if($errors->has('designation'))
+                        <span style="color:red;">{{$errors->first('designation')}}</span>
+                    @endif
                 </div>
             </div>
             <div class="row form-row">
@@ -49,6 +58,9 @@
                 </div>
                 <div class="col-sm-9">
                     <input type="text" name="mobile" class="form-control"/>
+                    @if($errors->has('mobile'))
+                        <span style="color:red;">{{$errors->first('mobile')}}</span>
+                    @endif
                 </div>
             </div>
             <div class="row form-row">
@@ -88,7 +100,10 @@
                     <label>Joining : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="date" name="joining" class="form-control"/>
+                    <input type="date" name="joining" class="form-control" value="<?php echo date('Y-m-d'); ?>" />
+                    @if($errors->has('date'))
+                        <span style="color:red;">{{$errors->first('date')}}</span>
+                    @endif
                 </div>
             </div>
             <div class="row form-row">
@@ -97,6 +112,9 @@
                 </div>
                 <div class="col-sm-9">
                     <input type="password" name="password" class="form-control"/>
+                     @if($errors->has('password'))
+                        <span style="color:red;">{{$errors->first('password')}}</span>
+                    @endif
                 </div>
             </div>
             <div class="row form-row">
@@ -104,7 +122,7 @@
                     <label>Confirm Password : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="password_confirmation" name="password" class="form-control"/>
+                    <input type="password" name="password_confirmation" class="form-control"/>
                 </div>
             </div>
             <div class="row form-row">

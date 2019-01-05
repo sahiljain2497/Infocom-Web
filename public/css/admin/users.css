@@ -10,6 +10,8 @@
     display: inline;
 }
 .search-btn{
+    width:250px;
+    margin-top:10px;
     line-height: 1.6;
     margin-bottom: 3px;
 }
@@ -21,10 +23,6 @@
     padding-bottom: 100px;
 }
 
-.search-btn{
-    width:250px;
-    margin-top:10px;
-}
 .add-user-div{
     text-align: right;
 }

@@ -52,6 +52,7 @@ Route::namespace('Coordinator')
 	Route::resource('dpr','DprController',[
 		'as' => 'coordinator'
 	]);
+	Route::get('/markAsRead','HomeController@markAsRead')->name('coordinator.read');
 });
 
 Route::namespace('Admin')
@@ -64,4 +65,6 @@ Route::namespace('Admin')
 	Route::resource('circle','CircleController');
 	Route::resource('dpr','DprController');
 	Route::resource('invoice','InvoiceController');
+	Route::resource('profile','ProfileController');
+	Route::resource('task','TaskController');
 });
