@@ -78,6 +78,14 @@ body{
     margin-bottom: 3px;
     width:250px ;
 }
+.mobile-notification{
+    display: none;
+}
+.dropdown-menu{
+    opacity: 0.9;
+    top:134%;
+}
+
 @media only screen and (max-width:520px){
     .nav-item{
         border-right: 0px;
@@ -87,5 +95,26 @@ body{
     }
     .form-row{
         margin-bottom: 3%;
+    }
+}
+@media only screen and (max-width:400px){
+    .navbar-brand{
+        font-size: 16px;
+    }
+    .navbar-toggler{
+        font-size: 14px;
+    }
+}
+@media only screen and (max-width:980px){
+    .mobile-notification{
+        display: inline-block;
+    }
+    .pc-notification{
+        display:none;
+    }
+    .dropdown-menu{
+        right:15px;
+        left:unset;
+        top:100%;
     }
 }

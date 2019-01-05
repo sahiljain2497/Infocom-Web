@@ -1,9 +1,21 @@
 <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" href="/">Tanishka Infocom Services</a>
-
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">Tanishka Infocom Services</a>
+    <a type="button" class="dropdown-toggle mobile-notification" data-toggle="dropdown">
+        <i class="fas fa-bell"></i>
+    </a>
+    <div class="dropdown-menu">
+        @if(count(Auth::user()->unreadNotifications) > 0)
+            @foreach(Auth::user()->unreadNotifications as $notification)
+                <span class="dropdown-item" href="#">{{$notification->data['data']}}</span>    
+            @endforeach
+            <a class="dropdown-item" href="{{ route('coordinator.read')}}">Mark All Read</a>
+        @else
+        <a class="dropdown-item" href="{{ route('coordinator.read')}}">No New Notifications</a>
+        @endif 
+    </div>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item {{ Request::segment(2) == 'home' ? 'active' : '' }}">
@@ -20,7 +32,7 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+            <li class="nav-item pc-notification">
                 <div class="dropdown nav-link">
                     <a type="button" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fas fa-bell"></i> Notifications
