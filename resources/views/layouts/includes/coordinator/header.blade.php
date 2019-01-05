@@ -13,7 +13,7 @@
             @endforeach
             <a class="dropdown-item" href="{{ route('coordinator.read')}}">Mark All Read</a>
         @else
-        <a class="dropdown-item" href="{{ route('coordinator.read')}}">No New Notifications</a>
+        <a class="dropdown-item">No New Notifications</a>
         @endif 
     </div>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
@@ -44,7 +44,7 @@
                             @endforeach
                             <a class="dropdown-item" href="{{ route('coordinator.read')}}">Mark All Read</a>
                         @else
-                        <a class="dropdown-item" href="{{ route('coordinator.read')}}">No New Notifications</a>
+                        <a class="dropdown-item">No New Notifications</a>
                         @endif 
                     </div>
                 </div> 

@@ -34,6 +34,7 @@ Route::namespace('User')
 	Route::resource('attendance','AttendanceController',[
 		'as' => 'user'
 	]);
+	Route::get('/markAsRead','HomeController@markAsRead')->name('user.read');
 });
 
 Route::namespace('Coordinator')
