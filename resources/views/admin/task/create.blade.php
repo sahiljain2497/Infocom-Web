@@ -6,10 +6,16 @@
             <h1 class="text-center">CREATE TASK</h1>
         </div>
         <hr/>
-        @if(Session::has('message'))
+        @if(Session::has('error'))
         <div class="alert alert-danger alert-dismissible">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>{{Session::get('message')}}</strong>
+            <strong>{{Session::get('error')}}</strong>
+        </div>
+        @endif
+        @if(Session::has('success'))
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{Session::get('success')}}</strong>
         </div>
         @endif
         <form method="post" action="{{route('task.store')}}">

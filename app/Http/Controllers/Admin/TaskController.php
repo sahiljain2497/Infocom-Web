@@ -38,9 +38,10 @@ class TaskController extends Controller
     {
         $user = User::where('emp_id','=',$request->to)->first();
         if(!$user)
-            return redirect()->route('task.create')->with('message','USER NOT FOUND');
+            return redirect()->route('task.create')->with('error','USER NOT FOUND');
         //dd($request);
         $user->notify(new NewTask($request->all()));
+        return redirect()->route('task.create')->with('success','USER WILL BE NOTIFIED.');
     }
 
     /**
