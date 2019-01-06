@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Superadmin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
-use App\Notifications\NewMessage;
-use Validator;
 
-class MessageController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +14,7 @@ class MessageController extends Controller
      */
     public function index()
     {
-        return view('admin.message.index');
+        //
     }
 
     /**
@@ -27,7 +24,7 @@ class MessageController extends Controller
      */
     public function create()
     {
-        return view('admin.message.create');
+        //
     }
 
     /**
@@ -37,20 +34,8 @@ class MessageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        $v = Validator::make($request->all(),[
-            'to' => 'required',
-            'data' => 'required'
-        ]);
-        if($v->fails()){
-            return redirect()->route('message.create')->withErrors($v);
-        }
-        $user = User::where('emp_id','=',$request->to)->first();
-        if(!$user)
-            return redirect()->route('message.create')->with('error','USER NOT FOUND');
-        //dd($request);
-        $user->notify(new NewMessage($request->all()));
-        return redirect()->route('message.create')->with('success','USER WILL BE NOTIFIED.');
+    {
+        //
     }
 
     /**

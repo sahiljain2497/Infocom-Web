@@ -12,6 +12,8 @@ class BaseController extends Controller
     {   
         switch(Auth::user()->type)
         {
+            case User::SUPERADMIN_TYPE :
+                return '/superadmin';
         	case User::ADMIN_TYPE :
                 return '/admin';
             case User::COORDINATOR_TYPE :

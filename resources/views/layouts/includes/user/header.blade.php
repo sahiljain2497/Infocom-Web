@@ -28,7 +28,10 @@
                 <a class="nav-link" href="/user/attendance"><i class="fas fa-clipboard-list"></i> Attendance</a>
             </li>
             <li class="nav-item {{ Request::segment(2) == 'task' ? 'active' : '' }}">
-                <a class="nav-link" href="/user/task"><i class="far fa-flag"></i> TASK</a>
+                <a class="nav-link" href="/user/task"><i class="fas fa-flag"></i> Task</a>
+            </li>
+            <li class="nav-item {{ Request::segment(2) == 'expense' ? 'active' : '' }}">
+                <a class="nav-link" href="/user/expense"><i class="fas fa-rupee-sign"></i> Expense</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">

@@ -10,10 +10,14 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const SUPERADMIN_TYPE = 'superadmin';
     const ADMIN_TYPE = 'admin';
     const COORDINATOR_TYPE = 'coordinator';
     const DEFAULT_TYPE = 'default';
 
+    public function isSuperadmin()    {        
+        return $this->type === self::ADMIN_TYPE;    
+    }
     public function isAdmin()    {        
         return $this->type === self::ADMIN_TYPE;    
     }

@@ -26,6 +26,9 @@
                 </div>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" name="to" placeholder="EMP ID" />
+                    @if($errors->has('emp_id'))
+                        <span style="color:red">{{$errors->first('emp_id')}}</span>
+                    @endif
                 </div>
             </div>
             <div class="row form-row">
@@ -34,6 +37,9 @@
                 </div>
                 <div class="col-sm-9">
                     <textarea name="data" class="form-control"></textarea>
+                    @if($errors->has('data'))
+                        <span style="color:red">{{$errors->first('data')}}</span>
+                    @endif
                 </div>
             </div>
             <div class="row form-row">

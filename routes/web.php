@@ -38,6 +38,9 @@ Route::namespace('User')
 	Route::resource('task','TaskController',[
 		'as' => 'user'
 	]);
+	Route::resource('expense','ExpenseController',[
+		'as' => 'user'
+	]);
 });
 
 Route::namespace('Coordinator')
@@ -75,4 +78,11 @@ Route::namespace('Admin')
 	Route::resource('profile','ProfileController');
 	Route::resource('message','MessageController');
 	Route::resource('task','TaskController');
+});
+
+Route::namespace('Admin')
+	->prefix('admin')
+	->middleware(['is_superadmin'])
+	->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
 });

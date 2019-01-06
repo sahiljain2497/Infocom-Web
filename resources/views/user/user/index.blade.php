@@ -47,7 +47,7 @@
                 <label>Designation : </label>
             </div>
             <div class="col-sm-9">
-                <input type="text" name="designation" value="{{$user->designation}}" class="form-control" readonly/>
+                <input type="text" value="{{$user->designation}}" class="form-control" readonly/>
             </div>
         </div>
         <div class="row form-row">
@@ -104,7 +104,15 @@
                 <label>Joining : </label>
             </div>
             <div class="col-sm-9">
-                <input type="date" name="joining" value="{{$user->joining}}" class="form-control" readonly/>
+                <input type="date" value="{{$user->joining}}" class="form-control" readonly/>
+            </div>
+        </div>
+        <div class="row form-row">
+            <div class="col-sm-3 label-div">
+                <label>Salary : </label>
+            </div>
+            <div class="col-sm-9">
+                <input type="text" value="{{$user->salary}}" class="form-control" readonly/>
             </div>
         </div>
         <div class="row text-center">

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\User;
+use Validator;
+use App\Information;
 
 class ProfileController extends Controller
 {
@@ -16,9 +18,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $id = Auth::user()->id;
-        $user = User::where('id','=',$id)->first();
-        return view('admin.profile')->withUser($user);
+        $id = Auth::user()->emp_id;
+        $info = Information::where('emp_id','=',$id)->first();
+        return view('admin.profile')->withInfo($info)->withId($id);
     }
 
     /**
@@ -39,7 +41,22 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $v = Validator::make($request->all(),[
+            'companyname' => 'required',
+            'gstin' => 'required',
+            'address_line_1' => 'required',
+            'name' => 'required',
+            'mobile' => 'required',
+            'email' => 'required',
+            'aadhar' => 'required',
+            'emp_id' => 'required'
+        ]);
+        if($v->fails()){
+            return redirect()->route('profile.index')->withErrors($v);
+        }
+        $data = request()->except(['_token']);
+        Information::create($data);
+        return redirect()->route('profile.index')->with('created','USER INFORMATION SAVED');
     }
 
     /**
@@ -73,7 +90,24 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $v = Validator::make($request->all(),[
+            'companyname' => 'required',
+            'gstin' => 'required',
+            'address_line_1' => 'required',
+            'name' => 'required',
+            'mobile' => 'required',
+            'email' => 'required',
+            'aadhar' => 'required',
+            'emp_id' => 'required'
+        ]);
+        if($v->fails()){
+            return redirect()->route('profile.index')->withErrors($v);
+        }
+        $data = $request->except(['_token','_method']);
+        $profile = Information::where('emp_id','=',$request->emp_id)->first();
+        $profile->fill($data);
+        $profile->save();
+        return redirect()->route('profile.index')->with('success','USER INFORMATION UPDATED'); 
     }
 
     /**

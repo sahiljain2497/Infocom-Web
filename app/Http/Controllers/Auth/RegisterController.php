@@ -62,6 +62,15 @@ class RegisterController extends BaseController
      */
     protected function create(array $data)
     {   
+        $count = User::count();
+        if($count == 0)
+            return User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'type' => User::DEFAULT_TYPE,
+                'emp_id' => 'EMP001',
+            ]);
         $len = User::orderBy('id','desc')->first()->id + 1;
         if($len < 10)
             $emp_id = 'EMP00'.$len;

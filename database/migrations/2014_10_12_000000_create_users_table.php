@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('pan')->nullable();
             $table->longText('experience')->nullable();
             $table->date('joining')->nullable();
+            $table->string('salary')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

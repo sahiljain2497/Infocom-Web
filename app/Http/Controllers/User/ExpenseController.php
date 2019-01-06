@@ -1,23 +1,30 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
-use App\Notifications\NewMessage;
+use Auth;
 use Validator;
+use App\Expense;
 
-class MessageController extends Controller
+class ExpenseController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.message.index');
+        $start = $request->input('start');
+        $end = $request->input('end');
+        $empid = Auth::user()->emp_id;
+        if($start == '' || $end == '')
+            $records = [];
+        else
+            $records = Expense::findExpense($empid,$start,$end)->paginate(10);
+        return view('user.expense.index',[ 'start'=>$start , 'end' => $end , 'empid' => $empid ,'records' => $records ]);
     }
 
     /**
@@ -27,7 +34,7 @@ class MessageController extends Controller
      */
     public function create()
     {
-        return view('admin.message.create');
+        //
     }
 
     /**
@@ -37,20 +44,20 @@ class MessageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         $v = Validator::make($request->all(),[
-            'to' => 'required',
-            'data' => 'required'
+            'amount' => 'required',
+            'date' => 'required',
+            'note' => 'required',
         ]);
         if($v->fails()){
-            return redirect()->route('message.create')->withErrors($v);
+            return redirect()->route('user.expense.index')->withErrors($v)->with('unsuccess-message','EXPENSE INFORMATION INVALID');
         }
-        $user = User::where('emp_id','=',$request->to)->first();
-        if(!$user)
-            return redirect()->route('message.create')->with('error','USER NOT FOUND');
-        //dd($request);
-        $user->notify(new NewMessage($request->all()));
-        return redirect()->route('message.create')->with('success','USER WILL BE NOTIFIED.');
+        else{
+            Expense::forceCreate(['emp_id' => Auth::user()->emp_id,'amount' => $request->amount,
+            'date' => $request->date,'note' => $request->note]);
+            return redirect()->route('user.expense.index')->with('success-message','EXPENSE APPLIED SUCCESSFULLY');
+        }
     }
 
     /**

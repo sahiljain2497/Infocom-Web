@@ -15,17 +15,30 @@ class AttendanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function dateInterval($start,$end){
+        $date1 = date_create($start);
+        $date2 = date_create($end);
+        return date_diff($date1,$date2)->days;
+    }
     public function index(request $request)
     {   
         $empid = Auth::user()->emp_id;
         $start = $request->input('start');
         $end = $request->input('end');
-        if($empid == '' || $start == '' || $end == '')
+        $absent = "";
+        $present = "";
+
+        if($start == '' || $end == '')
             $records = [];
         else{
             $records = Attendance::findAttendance($empid,$start,$end)->paginate(10);
+            $interval = $this->dateInterval($start,$end);
+            $present = count($records);
+            $absent = $interval - $present;
         }
-        return view('user.attendance')->withRecords($records)->withEmpid($empid)->withStart($start)->withEnd($end);
+
+        return view('user.attendance',['records' => $records,
+            'start' => $start, 'end' => $end, 'absent' => $absent , 'present' => $present  ]);
     }
 
     /**
