@@ -1,4 +1,4 @@
-@extends('layouts.user')
+@extends('layouts.coordinator')
 
 @section('content')
     <div class="classic-container">
@@ -20,6 +20,9 @@
         @endif
         <div class="row" style="margin-bottom:10px;">
             <button class="btn btn-primary" data-toggle="modal" data-target="#addExpense">ADD NEW EXPENSE</button>
+        </div>
+        <div class="row" style="margin-bottom:10px;">
+            <a href="{{route('coordinator.expense.create')}}" class="btn btn-primary">EMPLOYEE EXPENSE REQUEST</a>
         </div>
         <div class="form-container">
             <form method="GET">
@@ -49,7 +52,7 @@
     </div>
     <hr/>
     @if(count($records) != 0)
-        @include('user.expense.listing')
+        @include('coordinator.expense.listing')
     @elseif(!empty($start) && !empty($end))
         <div class="row">
             <div class="col-md-12">
@@ -65,7 +68,7 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-            <form method="POST" action ="{{route('user.expense.store')}}">
+            <form method="POST" action ="{{route('coordinator.expense.store')}}">
                 @csrf
                 <div class="row form-row">
                     <div class="col-sm-3 label-div">
@@ -86,17 +89,6 @@
                         <input type="text" name="amount" class="form-control"/>
                         @if($errors->has('amount'))
                             <span style="color:red;">{{$errors->first('amount')}}</span>
-                        @endif
-                    </div>
-                </div>
-                <div class="row form-row">
-                    <div class="col-sm-3 label-div">
-                        <label>Coordinate ID</label>
-                    </div>
-                    <div class="col-sm-9">
-                        <input type="text" name="coordinate" class="form-control"/>
-                        @if($errors->has('coordinate'))
-                            <span style="color:red;">{{$errors->first('coordinate')}}</span>
                         @endif
                     </div>
                 </div>

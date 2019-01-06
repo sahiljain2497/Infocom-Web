@@ -28,10 +28,13 @@
                 <a class="nav-link" href="/coordinator/attendance"><i class="fas fa-clipboard-list"></i> Attendance</a>
             </li>
             <li class="nav-item {{ Request::segment(2) == 'dpr' ? 'active' : '' }}">
-                <a class="nav-link" href="/coordinator/dpr"><i class="far fa-flag"></i> DPR</a>
+                <a class="nav-link" href="/coordinator/dpr"><i class="fas fa-list-ul"></i> Dpr</a>
             </li>
             <li class="nav-item {{ Request::segment(2) == 'task' ? 'active' : '' }}">
-                <a class="nav-link" href="/coordinator/task"><i class="far fa-flag"></i> TASK</a>
+                <a class="nav-link" href="/coordinator/task"><i class="fas fa-flag"></i> Task</a>
+            </li>
+            <li class="nav-item {{ Request::segment(2) == 'expense' ? 'active' : '' }}">
+                <a class="nav-link" href="/coordinator/expense"><i class="fas fa-rupee-sign"></i> Expense</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">

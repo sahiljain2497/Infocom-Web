@@ -8,8 +8,6 @@
                 <th>Date</th>
                 <th>Amount</th>
                 <th>Note</th>
-                <th>Coordinate ID</th>
-                <th>Coordinator</th>
                 <th>Admin</th>
                 <th>Super Admin</th>
                 <th>Status</th>
@@ -21,8 +19,6 @@
                         <td>{{$record->date}}</td>
                         <td>{{$record->amount}}</td>
                         <td>{{$record->note}}</td>
-                        <td>{{$record->coordinate}}</td>
-                        <td>{{$record->c_approved}}</td>
                         <td>{{$record->a_approved}}</td>
                         <td>{{$record->sa_approved}}</td>
                         <td>{{$record->status}}</td>

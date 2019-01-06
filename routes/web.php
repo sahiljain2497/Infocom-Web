@@ -34,13 +34,13 @@ Route::namespace('User')
 	Route::resource('attendance','AttendanceController',[
 		'as' => 'user'
 	]);
-	Route::get('/markAsRead','HomeController@markAsRead')->name('user.read');
 	Route::resource('task','TaskController',[
 		'as' => 'user'
 	]);
 	Route::resource('expense','ExpenseController',[
 		'as' => 'user'
 	]);
+	Route::get('/markAsRead','HomeController@markAsRead')->name('user.read');
 });
 
 Route::namespace('Coordinator')
@@ -59,10 +59,13 @@ Route::namespace('Coordinator')
 	Route::resource('dpr','DprController',[
 		'as' => 'coordinator'
 	]);
-	Route::get('/markAsRead','HomeController@markAsRead')->name('coordinator.read');
 	Route::resource('task','TaskController',[
 		'as' => 'coordinator'
 	]);
+	Route::resource('expense','ExpenseController',[
+		'as' => 'coordinator'
+	]);
+	Route::get('/markAsRead','HomeController@markAsRead')->name('coordinator.read');
 });
 
 Route::namespace('Admin')

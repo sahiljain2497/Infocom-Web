@@ -19,6 +19,8 @@ class CreateExpensesTable extends Migration
             $table->string('emp_id');
             $table->longText('note');
             $table->string('amount');
+            $table->string('coordinate');
+            $table->string('admin')->nullable();
             $table->string('c_approved')->default('pending');
             $table->string('a_approved')->default('pending');
             $table->string('sa_approved')->default('pending');

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Coordinator;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -24,7 +24,7 @@ class ExpenseController extends Controller
             $records = [];
         else
             $records = Expense::findExpense($empid,$start,$end)->paginate(10);
-        return view('user.expense.index',[ 'start'=>$start , 'end' => $end , 'empid' => $empid ,'records' => $records ]);
+        return view('coordinator.expense.index',[ 'start'=>$start , 'end' => $end , 'empid' => $empid ,'records' => $records ]);
     }
 
     /**
@@ -32,9 +32,10 @@ class ExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
-        //
+        return view('coordinator.expense.request');
     }
 
     /**
@@ -49,15 +50,14 @@ class ExpenseController extends Controller
             'amount' => 'required',
             'date' => 'required',
             'note' => 'required',
-            'coordinate' => 'required',
         ]);
         if($v->fails()){
-            return redirect()->route('user.expense.index')->withErrors($v)->with('unsuccess-message','EXPENSE INFORMATION INVALID');
+            return redirect()->route('coordinator.expense.index')->withErrors($v)->with('unsuccess-message','EXPENSE INFORMATION INVALID');
         }
         else{
             Expense::forceCreate(['emp_id' => Auth::user()->emp_id,'amount' => $request->amount,
-            'date' => $request->date,'note' => $request->note, 'coordinate' => $request->coordinate]);
-            return redirect()->route('user.expense.index')->with('success-message','EXPENSE APPLIED SUCCESSFULLY');
+            'date' => $request->date,'note' => $request->note]);
+            return redirect()->route('coordinator.expense.index')->with('success-message','EXPENSE APPLIED SUCCESSFULLY');
         }
     }
 
