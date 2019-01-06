@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class NewTask extends Notification
+class NewMessage extends Notification
 {
     use Queueable;
 
@@ -58,7 +58,6 @@ class NewTask extends Notification
             //
         ];
     }
-
     public function toDatabase($notifiable)
     {
         return [

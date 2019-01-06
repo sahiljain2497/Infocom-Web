@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
-class TaskController extends Controller
+use App\User;
+use App\Notifications\NewMessage;
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.message.index');
     }
 
     /**
@@ -24,7 +25,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.message.create');
     }
 
     /**
@@ -35,7 +36,12 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::where('emp_id','=',$request->to)->first();
+        if(!$user)
+            return redirect()->route('message.create')->with('error','USER NOT FOUND');
+        //dd($request);
+        $user->notify(new NewMessage($request->all()));
+        return redirect()->route('message.create')->with('success','USER WILL BE NOTIFIED.');
     }
 
     /**

@@ -35,6 +35,9 @@ Route::namespace('User')
 		'as' => 'user'
 	]);
 	Route::get('/markAsRead','HomeController@markAsRead')->name('user.read');
+	Route::resource('task','TaskController',[
+		'as' => 'user'
+	]);
 });
 
 Route::namespace('Coordinator')
@@ -54,6 +57,9 @@ Route::namespace('Coordinator')
 		'as' => 'coordinator'
 	]);
 	Route::get('/markAsRead','HomeController@markAsRead')->name('coordinator.read');
+	Route::resource('task','TaskController',[
+		'as' => 'coordinator'
+	]);
 });
 
 Route::namespace('Admin')
@@ -67,5 +73,6 @@ Route::namespace('Admin')
 	Route::resource('dpr','DprController');
 	Route::resource('invoice','InvoiceController');
 	Route::resource('profile','ProfileController');
+	Route::resource('message','MessageController');
 	Route::resource('task','TaskController');
 });

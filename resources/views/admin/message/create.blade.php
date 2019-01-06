@@ -3,7 +3,7 @@
 @section('content')
     <div class="classic-container">
         <div class="jumbotron">
-            <h1 class="text-center">CREATE TASK</h1>
+            <h1 class="text-center">CREATE MESSAGE</h1>
         </div>
         <hr/>
         @if(Session::has('error'))
@@ -18,7 +18,7 @@
             <strong>{{Session::get('success')}}</strong>
         </div>
         @endif
-        <form method="post" action="{{route('task.store')}}">
+        <form method="post" action="{{route('message.store')}}">
             @csrf
             <div class="row form-row">
                 <div class="col-sm-3 label-div">

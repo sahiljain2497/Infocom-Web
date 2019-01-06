@@ -18,6 +18,7 @@
                 <li class="nav-item {{ Request::segment(2) == 'invoice' ? 'active' : '' }}"><a class="nav-link" href="{{route('invoice.index')}}"><i class="fas fa-file-invoice"></i></i> Invoice</a></li>
                 <li class="nav-item {{ Request::segment(2) == 'profile' ? 'active' : '' }}"><a class="nav-link" href="{{route('profile.index')}}"><i class="fas fa-user-alt"></i> Profile</a></li>
                 <li class="nav-item {{ Request::segment(2) == 'task' ? 'active' : '' }}"><a class="nav-link" href="{{route('task.index')}}"><i class="fas fa-user-alt"></i> Task</a></li>
+                <li class="nav-item {{ Request::segment(2) == 'message' ? 'active' : '' }}"><a class="nav-link" href="{{route('message.index')}}"><i class="fas fa-user-alt"></i> Message</a></li>
             </ul>
                     <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">

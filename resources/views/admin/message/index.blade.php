@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 @section('stylesheets')
-    <link href="{{ asset('css/admin/task.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/admin/message.css')}}" rel="stylesheet">
 @endsection
 @section('content')
     <div class="classic-container">
         <div class="jumbotron">
-            <h1 class="text-center">TASK</h1>
+            <h1 class="text-center">MESSAGE</h1>
         </div>
         <hr/>
         <div class="row form-row create-row">
         <div class="col-sm-12">
-            <a href="{{ route('task.create')}}" class="btn btn-primary search-btn"><i class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;CREATE TASK</a>
+            <a href="{{ route('message.create')}}" class="btn btn-primary search-btn"><i class="fas fa-plus"></i>&nbsp;&nbsp;&nbsp;CREATE MESSAGE</a>
         </div>
         </div>
         <hr/>

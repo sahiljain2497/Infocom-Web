@@ -59,8 +59,21 @@ body{
 }
 .dropdown-item{
     cursor: pointer;
+    white-space: unset;
+    word-break: break-all;
+    width: 250px;
 }
-
+.badge{
+    line-height: inherit;
+    border-radius: 50px;
+    position: relative;
+    top: 4px;
+    text-align: center;
+    font-size: 10px;
+    left: -5px;
+    width: 18px;
+    padding: 1px;
+}
 /* label */
 
 .label-div{
@@ -78,6 +91,9 @@ body{
 .dropdown-menu{
     opacity: 0.9;
     top:134%;
+    max-width: 250px;
+    right: 12%;
+    left: unset;
 }
 @media only screen and (max-width:520px){
     .nav-item{
@@ -109,5 +125,15 @@ body{
         right:15px;
         left:unset;
         top:100%;
+    }
+    .badge{
+        line-height: inherit;
+        border-radius: 50px;
+        position: relative;
+        top: 6px;
+        text-align: center;
+        font-size: 8px;
+        left: 0px;
+        width: 15px;
     }
 }

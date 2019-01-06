@@ -4,7 +4,7 @@
     </button>
     <a class="navbar-brand" href="/">Tanishka Infocom Services</a>
     <a type="button" class="dropdown-toggle mobile-notification" data-toggle="dropdown">
-        <i class="fas fa-bell"></i>
+        <i class="fas fa-bell"></i><span class="badge badge-danger">{{count(Auth::user()->unreadNotifications)}}</span>
     </a>
     <div class="dropdown-menu">
         @if(count(Auth::user()->unreadNotifications) > 0)
@@ -27,12 +27,15 @@
             <li class="nav-item {{ Request::segment(2) == 'attendance' ? 'active' : '' }}">
                 <a class="nav-link" href="/user/attendance"><i class="fas fa-clipboard-list"></i> Attendance</a>
             </li>
+            <li class="nav-item {{ Request::segment(2) == 'task' ? 'active' : '' }}">
+                <a class="nav-link" href="/user/task"><i class="far fa-flag"></i> TASK</a>
+            </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item pc-notification">
                 <div class="dropdown nav-link">
                     <a type="button" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fas fa-bell"></i> Notifications
+                        <i class="fas fa-bell"></i> <span class="badge badge-danger">{{count(Auth::user()->unreadNotifications)}}</span>
                     </a>
                     <div class="dropdown-menu">
                         @if(count(Auth::user()->unreadNotifications) > 0)
