@@ -21,4 +21,10 @@ class Expense extends Model
     public function scopeFindByEnd($query,$end){
         return $query->whereDate('date','<=',$end);
     }
+    public function scopeNotMyExpense($query,$myid){
+        return $query->whereNotIn('emp_id',[$myid]);
+    }
+    public function scopeCorApproved($query){
+        return $query->where('c_approved','=','approved');
+    }
 }

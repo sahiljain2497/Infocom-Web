@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Coordinator;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Expense;
 use Auth;
+use Validator;
+use App\Expense;
 
-class EmployeeExpenseController extends Controller
+class ExpenseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,21 +17,14 @@ class EmployeeExpenseController extends Controller
      */
     public function index(Request $request)
     {
-        $myid = Auth::user()->emp_id;
-        $coordinator_id = Auth::user()->emp_id;
-        $emp_id = $request->input('emp_id');
         $start = $request->input('start');
         $end = $request->input('end');
-        $records = Expense::findByCoordinator($coordinator_id);
-        $records = $emp_id ? Expense::findById($emp_id) : Expense::query();
-        if($start)
-            $records = $records->findByStart($start);
-        if($end)
-            $records = $records->findByEnd($end);
-        $records = $records->notMyExpense($myid);
-        //filter by not admin
-        $records = $records->paginate(10);
-        return view('coordinator.employee_expense.index',['emp_id' => $emp_id , 'start' => $start , 'end' => $end ,'records' => $records]);
+        $empid = Auth::user()->emp_id;
+        if($start == '' || $end == '')
+            $records = [];
+        else
+            $records = Expense::findExpense($empid,$start,$end)->paginate(10);
+        return view('admin.expense.index',[ 'start'=>$start , 'end' => $end , 'empid' => $empid ,'records' => $records ]);
     }
 
     /**
@@ -51,7 +45,20 @@ class EmployeeExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $v = Validator::make($request->all(),[
+            'amount' => 'required',
+            'date' => 'required',
+            'note' => 'required'
+        ]);
+        if($v->fails()){
+            return redirect()->route('expense.index')->withErrors($v)->with('unsuccess-message','EXPENSE INFORMATION INVALID');
+        }
+        else{
+            Expense::forceCreate(['emp_id' => Auth::user()->emp_id,'amount' => $request->amount,
+            'date' => $request->date,'note' => $request->note,'c_approved' => 'approved',
+            'a_approved' => 'approved','coordinate' => 'none']);
+            return redirect()->route('expense.index')->with('success-message','EXPENSE APPLIED SUCCESSFULLY');
+        }
     }
 
     /**
@@ -85,12 +92,7 @@ class EmployeeExpenseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $action = $request->input('action');
-        if($action === 'approved')
-            Expense::where('id','=',$id)->update(['c_approved'=> 'approved','status' => 'pending']);
-        else
-            Expense::where('id','=',$id)->update(['c_approved'=> 'rejected','status' => 'rejected']);
-        return redirect()->route('coordinator.employee_expense.index');
+        //
     }
 
     /**

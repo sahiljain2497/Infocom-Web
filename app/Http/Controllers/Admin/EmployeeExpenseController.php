@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Coordinator;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,20 +17,21 @@ class EmployeeExpenseController extends Controller
     public function index(Request $request)
     {
         $myid = Auth::user()->emp_id;
-        $coordinator_id = Auth::user()->emp_id;
         $emp_id = $request->input('emp_id');
         $start = $request->input('start');
         $end = $request->input('end');
-        $records = Expense::findByCoordinator($coordinator_id);
+        $records = [];
         $records = $emp_id ? Expense::findById($emp_id) : Expense::query();
         if($start)
             $records = $records->findByStart($start);
         if($end)
             $records = $records->findByEnd($end);
-        $records = $records->notMyExpense($myid);
-        //filter by not admin
-        $records = $records->paginate(10);
-        return view('coordinator.employee_expense.index',['emp_id' => $emp_id , 'start' => $start , 'end' => $end ,'records' => $records]);
+        if($records != []){
+            $records = $records->corApproved();
+            $records = $records->notMyExpense($myid);
+            $records = $records->paginate(10);
+        }
+        return view('admin.employee_expense.index',['emp_id' => $emp_id , 'start' => $start , 'end' => $end ,'records' => $records]);
     }
 
     /**
@@ -87,10 +88,11 @@ class EmployeeExpenseController extends Controller
     {
         $action = $request->input('action');
         if($action === 'approved')
-            Expense::where('id','=',$id)->update(['c_approved'=> 'approved','status' => 'pending']);
+            Expense::where('id','=',$id)->update(['a_approved' => 'approved','status' => 'pending']);
         else
-            Expense::where('id','=',$id)->update(['c_approved'=> 'rejected','status' => 'rejected']);
-        return redirect()->route('coordinator.employee_expense.index');
+            Expense::where('id','=',$id)->update(['a_approved' => 'rejected','status' => 'rejected']);
+        return redirect()->route('employee_expense.index');
+
     }
 
     /**

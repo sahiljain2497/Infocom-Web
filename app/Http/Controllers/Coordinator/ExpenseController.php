@@ -35,7 +35,7 @@ class ExpenseController extends Controller
 
     public function create()
     {
-        return view('coordinator.expense.request');
+        
     }
 
     /**
@@ -56,7 +56,7 @@ class ExpenseController extends Controller
         }
         else{
             Expense::forceCreate(['emp_id' => Auth::user()->emp_id,'amount' => $request->amount,
-            'date' => $request->date,'note' => $request->note]);
+            'date' => $request->date,'note' => $request->note,'coordinate' => Auth::user()->emp_id]);
             return redirect()->route('coordinator.expense.index')->with('success-message','EXPENSE APPLIED SUCCESSFULLY');
         }
     }

@@ -84,6 +84,8 @@ Route::namespace('Admin')
 	Route::resource('profile','ProfileController');
 	Route::resource('message','MessageController');
 	Route::resource('task','TaskController');
+	Route::resource('expense','ExpenseController');
+	Route::resource('employee_expense','EmployeeExpenseController');
 });
 
 Route::namespace('Admin')
