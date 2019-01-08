@@ -65,6 +65,9 @@ Route::namespace('Coordinator')
 	Route::resource('expense','ExpenseController',[
 		'as' => 'coordinator'
 	]);
+	Route::resource('employee_expense','EmployeeExpenseController',[
+		'as' => 'coordinator'
+	]);
 	Route::get('/markAsRead','HomeController@markAsRead')->name('coordinator.read');
 });
 

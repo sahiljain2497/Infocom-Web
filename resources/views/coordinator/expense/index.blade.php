@@ -22,7 +22,7 @@
             <button class="btn btn-primary" data-toggle="modal" data-target="#addExpense">ADD NEW EXPENSE</button>
         </div>
         <div class="row" style="margin-bottom:10px;">
-            <a href="{{route('coordinator.expense.create')}}" class="btn btn-primary">EMPLOYEE EXPENSE REQUEST</a>
+            <a href="{{route('coordinator.employee_expense.index')}}" class="btn btn-primary">EMPLOYEE EXPENSE REQUEST</a>
         </div>
         <div class="form-container">
             <form method="GET">
