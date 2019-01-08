@@ -22,13 +22,15 @@ class EmployeeExpenseController extends Controller
         $start = $request->input('start');
         $end = $request->input('end');
         $records = Expense::findByCoordinator($coordinator_id);
-        $records = $emp_id ? Expense::findById($emp_id) : Expense::query();
+        if(count($records->get()) == 0)
+            return view('coordinator.employee_expense.index',['emp_id' => $emp_id , 'start' => $start , 'end' => $end ,'records' => []]);
+        if($emp_id)
+            $records = $records->findById($emp_id);
         if($start)
             $records = $records->findByStart($start);
         if($end)
             $records = $records->findByEnd($end);
         $records = $records->notMyExpense($myid);
-        //filter by not admin
         $records = $records->paginate(10);
         return view('coordinator.employee_expense.index',['emp_id' => $emp_id , 'start' => $start , 'end' => $end ,'records' => $records]);
     }
