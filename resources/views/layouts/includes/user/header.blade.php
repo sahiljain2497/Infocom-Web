@@ -37,7 +37,7 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item pc-notification">
                 <div class="dropdown nav-link">
-                    <a type="button" class="dropdown-toggle" data-toggle="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fas fa-bell"></i> <span class="badge badge-danger">{{count(Auth::user()->unreadNotifications)}}</span>
                     </a>
                     <div class="dropdown-menu">
