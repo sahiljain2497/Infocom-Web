@@ -18,6 +18,7 @@
             <strong>{{Session::get('unsuccess-message')}}</strong>
         </div>
         @endif
+        <div class="form-container">
         <form method="POST" action="{{ route('dpr.update',$data->id)}}">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
@@ -371,5 +372,6 @@
                 </div>
             </div>
         </form>
+    </div>
 </div>
 @endsection

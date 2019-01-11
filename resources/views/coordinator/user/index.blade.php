@@ -18,6 +18,7 @@
         <strong>{{Session::get('unsuccess')}}</strong>
     </div>
     @endif
+    <div class="form-container">
     <form method="POST" action="{{route('coordinator.user.update',$user->id)}}">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}
@@ -144,5 +145,6 @@
             </div>
         </div>
     </form>
+</div>
 </div>
 @endsection

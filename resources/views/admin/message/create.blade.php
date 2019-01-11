@@ -18,6 +18,7 @@
             <strong>{{Session::get('success')}}</strong>
         </div>
         @endif
+        <div class="form-container">
         <form method="post" action="{{route('message.store')}}">
             @csrf
             <div class="row form-row">
@@ -48,5 +49,6 @@
                 </div>
             </div>
         </form>
+        </div>
     </div>
 @endsection

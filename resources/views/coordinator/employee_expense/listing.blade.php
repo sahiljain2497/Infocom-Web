@@ -1,6 +1,12 @@
 <div class="row">
     <div class="col-sm-12">
-    <p style="font-size: 20px;text-align: center;font-weight: 599;"><span>Showing Records for <span style="text-decoration:underline;">{{Auth::user()->emp_id}}</span> From  : </span><span style="text-decoration:underline;">{{$start}}</span><span> To </span><span style="text-decoration:underline;">{{$end}}</span></p>
+    <p style="font-size: 20px;text-align: center;font-weight: 599;"><span>Showing Records for </span> <span style="text-decoration:underline;">{{Auth::user()->emp_id}}</span>
+    @if($start)
+        <span> From : </span><span style="text-decoration:underline;">{{$start}}</span>
+    @endif
+    @if($end)    
+        <span> To </span><span style="text-decoration:underline;">{{$end}}</span>
+    @endif
     <div class="table-container">
         <table class="table">
             <thead>

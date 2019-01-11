@@ -24,6 +24,7 @@
             <strong>{{Session::get('created')}}</strong>
         </div>
     @endif
+    <div class="form-container">
     @if($info != null)
     <form method="POST" action="{{route('profile.update',$id)}}">
         {{ csrf_field() }}
@@ -168,5 +169,6 @@
             </div>
         </div>
     </form>
+</div>
 </div>
 @endsection

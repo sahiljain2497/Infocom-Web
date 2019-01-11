@@ -18,6 +18,7 @@
             <strong>{{Session::get('unsuccess-message')}}</strong>
         </div>
         @endif
+        <div class="form-container">
         <form method="post" action="{{ route('dpr.store') }}">
             @csrf
             <div class="row form-row">
@@ -443,5 +444,6 @@
                 </div>
             </div>
         </form>
+</div>
 </div>
 @endsection

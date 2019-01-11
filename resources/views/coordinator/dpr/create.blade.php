@@ -18,6 +18,7 @@
             <strong>{{Session::get('unsuccess-message')}}</strong>
         </div>
         @endif
+        <div class="form-container">
         <form method="post" action="{{ route('coordinator.dpr.store') }}">
             @csrf
             <div class="row form-row">
@@ -25,7 +26,7 @@
                     <label>Creator ID : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="creator_id" value="{{$data->creator_id}}" readonly/>
+                    <input type="text" class="form-control" name="creator_id" value="{{Auth::user()->emp_id}}" readonly/>
                 </div>
             </div>
             <div class="row form-row">
@@ -443,5 +444,6 @@
                 </div>
             </div>
         </form>
+    </div>
 </div>
 @endsection

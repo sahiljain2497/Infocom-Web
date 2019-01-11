@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Task;
 use Auth;
 use Validator;
-
+use App\User;
 class TaskController extends Controller
 {
     /**
@@ -62,6 +62,11 @@ class TaskController extends Controller
             return redirect()->route('coordinator.task.create')->withErrors($v)->with('unsuccess-message','TASK INFORMATION INVALID');
         }
         else{
+            $reciever_id = $request['emp_id'];
+            $type = User::where('emp_id','=',$reciever_id)->first()->type;
+            if($type != 'user'){
+                return redirect()->route('coordinator.task.create')->with('unsuccess-message','CANNOT ASSIGN TO HIGHER POSITION');    
+            }
             TASK::forceCreate($request->except('_token'));
             return redirect()->route('coordinator.task.create')->with('success-message','TASK CREATED SUCCESSFULLY');
         }

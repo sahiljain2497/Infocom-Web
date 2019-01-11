@@ -44,7 +44,14 @@
         @elseif(!empty($start) && !empty($end))
             <div class="row">
                 <div class="col-md-12">
-                    <p style="font-size: 20px;text-align: center;font-weight: 599;"><span>No Records Found for <span style="text-decoration:underline;">{{$emp_id}}</span> From : </span><span style="text-decoration:underline;">{{$start}}</span><span> To </span><span style="text-decoration:underline;">{{$end}}</span></p>
+                    <p style="font-size: 20px;text-align: center;font-weight: 599;"><span>No Records Found for </span> <span style="text-decoration:underline;">{{$emp_id}}</span>
+                    @if($start)
+                        <span> From : </span><span style="text-decoration:underline;">{{$start}}</span>
+                    @endif
+                    @if($end)    
+                        <span> To </span><span style="text-decoration:underline;">{{$end}}</span>
+                    @endif
+                    </p>
                 </div>
             </div>
         @endif
