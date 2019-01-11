@@ -25,7 +25,7 @@
                                     Action
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="{{ route('coordinator.dpr.view')}}">
+                                    <a class="dropdown-item" href="{{ route('coordinator.dpr.show',$record->id)}}">View
                                     </a>
                                 </div>
                             </div>

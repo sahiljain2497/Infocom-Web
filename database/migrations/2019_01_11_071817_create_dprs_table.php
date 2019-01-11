@@ -57,6 +57,7 @@ class CreateDprsTable extends Migration
             $table->string('vendor_name')->nullable();
             $table->string('vendor_rate')->nullable();
             $table->string('vendor_payment_status')->nullable();
+            $table->string('creator_id');
             $table->timestamps();
         });
     }

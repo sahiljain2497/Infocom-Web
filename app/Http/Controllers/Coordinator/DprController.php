@@ -80,11 +80,11 @@ class DprController extends Controller
         'anteena_size' => 'required'
         ]);
         if($v->fails()){
-            return redirect()->route('coordinator.dpr.create')->withErrors($v)->with('unsuccess-message','EXPENSE INFORMATION INVALID');
+            return redirect()->route('coordinator.dpr.create')->withErrors($v)->with('unsuccess-message','DPR INFORMATION INVALID');
         }
         else{
-        Dpr::forceCreate($request->except('_token'));
-        return redirect()->route('coordinator.dpr.create')->with('success-message','DPR CREATED SUCCESSFULLY');
+            Dpr::forceCreate($request->except('_token'));
+            return redirect()->route('coordinator.dpr.create')->with('success-message','DPR CREATED SUCCESSFULLY');
         }
     }
 
@@ -96,7 +96,8 @@ class DprController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Dpr::where('id','=',$id)->first();
+        return view('coordinator.dpr.view',['data' => $data]);
     }
 
     /**
