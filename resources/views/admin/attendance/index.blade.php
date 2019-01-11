@@ -21,7 +21,7 @@
                         <label>EMP ID :</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="text" placeholder="Search EMPID" name="emp_id" value="{{$empid}}" class="form-control" />
+                        <input type="text" placeholder="Search EMPID" name="emp_id" value="{{$empid}}" class="form-control" required/>
                     </div>
                 </div>
                 <div class="row form-row">
@@ -29,7 +29,7 @@
                         <label>START DATE:</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="date" name="start" value="{{$start}}" class="form-control" />
+                        <input type="date" name="start" value="{{$start}}" class="form-control" required/>
                     </div>
                 </div>
                 <div class="row form-row">
@@ -37,7 +37,7 @@
                         <label>END DATE :</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="date" name="end" value="{{$end}}" class="form-control" />
+                        <input type="date" name="end" value="{{$end}}" class="form-control" required/>
                     </div>
                 </div>
                 <div class="row form-row text-center">

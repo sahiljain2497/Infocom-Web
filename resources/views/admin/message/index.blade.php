@@ -39,6 +39,7 @@
         </form>
         <hr/>
         <div class="row form-row">
+            <div class="table-container">
             <table class="table">
                 <thead>
                     <th>S.No.</th>
@@ -49,6 +50,7 @@
                 <tbody>
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
 @endsection
