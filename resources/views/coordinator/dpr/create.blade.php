@@ -25,7 +25,7 @@
                     <label>Creator ID : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="creator_id" value="{{Auth::user()->emp_id}}" readonly/>
+                    <input type="text" class="form-control" name="creator_id" value="{{$data->creator_id}}" readonly/>
                 </div>
             </div>
             <div class="row form-row">

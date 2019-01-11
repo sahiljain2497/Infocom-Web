@@ -25,10 +25,10 @@ class DprController extends Controller
         if($start != '' || $end != ''){
             $records = Dpr::findById($emp_id);
             if($start){
-                $records = Dpr::findByStart($start);
+                $records = $records->findByStart($start);
             }
             if($end){
-                $records = Dpr::findByEnd($end);
+                $records = $records->findByEnd($end);
             }
             $records = $records->paginate(10);
         }

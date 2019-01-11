@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Dpr;
+use Auth;
+use Validator;
+use App\Circle;
 
 class DprController extends Controller
 {
@@ -12,9 +16,26 @@ class DprController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.dpr.index');
+        $start = $request->input('start');
+        $end = $request->input('end');
+        $emp_id = Auth::user()->emp_id;
+        $records = [];
+        if($start)
+        {
+            $records = Dpr::findByStart($start);
+            if($end){
+                $records = $records->findByEnd($end);
+            }
+            $records = $records->paginate(10);
+        }
+        else if($end){
+            $records =Dpr::findByEnd($end);
+            $records = $records->paginate(10);
+        }
+        return view('admin.dpr.index',['records' => $records , 'start' => $start ,
+                    'end' => $end, 'emp_id' => $emp_id]);
     }
 
     /**
@@ -24,7 +45,8 @@ class DprController extends Controller
      */
     public function create()
     {
-        return view('admin.dpr.create');
+        $circles = Circle::all();
+        return view('admin.dpr.create',['circles' => $circles]);
     }
 
     /**
@@ -35,7 +57,37 @@ class DprController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $v = Validator::make($request->all(),[
+            'date' => 'required',
+            'month' => 'required',
+            'project' => 'required',
+            'customer' => 'required',
+            'circle' => 'required',
+            'site_id_a' => 'required',
+            'site_id_b' => 'required',
+            'site_name_a' => 'required',
+            'site_name_b' => 'required',
+            'link_id' => 'required',
+            'site_type' => 'required',
+            'sow' => 'required',
+            'quantity' => 'required',
+            'rate' => 'required',
+            'amount' => 'required',
+            'payterm' => 'required',
+            'first_mile_amount' => 'required',
+            'allocation_date' => 'required',
+            'integration_date' => 'required',
+            'installation_date' => 'required',
+            'site_completion_date' => 'required',
+            'anteena_size' => 'required'
+            ]);
+            if($v->fails()){
+                return redirect()->route('dpr.create')->withErrors($v)->with('unsuccess-message','DPR INFORMATION INVALID');
+            }
+            else{
+                Dpr::forceCreate($request->except('_token'));
+                return redirect()->route('dpr.create')->with('success-message','DPR CREATED SUCCESSFULLY');
+            }
     }
 
     /**
@@ -46,7 +98,8 @@ class DprController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Dpr::where('id','=',$id)->first();
+        return view('admin.dpr.edit',['data' => $data]);
     }
 
     /**
@@ -69,7 +122,39 @@ class DprController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $v = Validator::make($request->all(),[
+            'date' => 'required',
+            'month' => 'required',
+            'project' => 'required',
+            'customer' => 'required',
+            'circle' => 'required',
+            'site_id_a' => 'required',
+            'site_id_b' => 'required',
+            'site_name_a' => 'required',
+            'site_name_b' => 'required',
+            'link_id' => 'required',
+            'site_type' => 'required',
+            'sow' => 'required',
+            'quantity' => 'required',
+            'rate' => 'required',
+            'amount' => 'required',
+            'payterm' => 'required',
+            'first_mile_amount' => 'required',
+            'allocation_date' => 'required',
+            'integration_date' => 'required',
+            'installation_date' => 'required',
+            'site_completion_date' => 'required',
+            'anteena_size' => 'required'
+            ]);
+            if($v->fails()){
+                return redirect()->route('dpr.show',$id)->withErrors($v)->with('unsuccess-message','DPR UPDATION NOT POSSIBLE');
+            }
+            else{
+                $dpr = Dpr::findOrFail($id);
+                $dpr->fill($request->except(['_token','_method']));
+                $dpr->save();
+                return redirect()->route('dpr.show',$id)->with('success-message','DPR UPDATED SUCCESSFULLY');
+            }
     }
 
     /**

@@ -347,7 +347,7 @@
                     <label>Vendor Payment : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="vendor_payment_status" value="{{$data->vendor_payment}}" readonly/>
+                    <input type="text" class="form-control" name="vendor_payment_status" value="{{$data->vendor_payment_status}}" readonly/>
                 </div>
             </div>
 </div>
