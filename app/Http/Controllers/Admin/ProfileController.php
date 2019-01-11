@@ -8,6 +8,7 @@ use Auth;
 use App\User;
 use Validator;
 use App\Information;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -98,18 +99,26 @@ class ProfileController extends Controller
             'mobile' => 'required',
             'email' => 'required',
             'aadhar' => 'required',
-            'emp_id' => 'required'
+            'emp_id' => 'required',
+            'password' => 'confirmed'
         ]);
         if($v->fails()){
-            return redirect()->route('profile.index')->withErrors($v);
+            return redirect()->route('profile.index')->withErrors($v)->with('unsuccess','INFORMATION INVALID');
         }
-        $data = $request->except(['_token','_method']);
-        $profile = Information::where('emp_id','=',$request->emp_id)->first();
-        $profile->fill($data);
-        $profile->save();
-        return redirect()->route('profile.index')->with('success','USER INFORMATION UPDATED'); 
+        else{
+            if($request['password'] == ''){
+                $request->request->remove('password');
+            }
+            else{
+                $request['password'] = Hash::make($request['password']);
+            }
+            $data = $request->except(['_token','_method']);
+            $profile = Information::where('emp_id','=',$request->emp_id)->first();
+            $profile->fill($data);
+            $profile->save();
+            return redirect()->route('profile.index')->with('success','INFORMATION UPDATED'); 
+        }
     }
-
     /**
      * Remove the specified resource from storage.
      *

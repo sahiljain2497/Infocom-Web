@@ -6,6 +6,12 @@
         <h1 class="text-center">MY PROFILE : </h1>
     </div>
     <hr/>
+    @if(Session::has('unsuccess'))
+    <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>{{Session::get('unsuccess')}}</strong>
+    </div>
+    @endif
     @if(Session::has('success'))
         <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -131,6 +137,25 @@
                 @if($errors->has('address_line_2'))
                     <span style="color:red;">{{$errors->first('address_line_2')}}</span>
                 @endif
+            </div>
+        </div>
+        <div class="row form-row">
+            <div class="col-sm-3 label-div">
+                <label>Password : </label>
+            </div>
+            <div class="col-sm-9">
+                <input type="password" name="password" class="form-control"/>
+                @if($errors->has('password'))
+                    <span style="color:red;">{{$errors->first('password')}}</span>
+                @endif
+            </div>
+        </div>
+        <div class="row form-row">
+            <div class="col-sm-3 label-div">
+                <label>Confirm Password : </label>
+            </div>
+            <div class="col-sm-9">
+                <input type="password" name="password_confirmation" class="form-control"/>
             </div>
         </div>
         <div class="row text-center">

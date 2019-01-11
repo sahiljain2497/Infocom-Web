@@ -13,7 +13,7 @@ class User extends Authenticatable
     const SUPERADMIN_TYPE = 'superadmin';
     const ADMIN_TYPE = 'admin';
     const COORDINATOR_TYPE = 'coordinator';
-    const DEFAULT_TYPE = 'default';
+    const DEFAULT_TYPE = 'user';
 
     public function isSuperadmin()    {        
         return $this->type === self::ADMIN_TYPE;    
