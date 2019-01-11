@@ -70,7 +70,9 @@
                 </div>
                 <div class="col-sm-9">
                     <select name="circle" class="form-control">
-                        
+                        @foreach($circles as $circle)
+                            <option value="{{$circle->region}}">{{$circle->region}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -241,6 +243,17 @@
             </div>
             <div class="row form-row">
                 <div class="col-sm-3 label-div">
+                    <label>Installation Date : </label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="date" class="form-control" name="installation_date" />
+                    @if($errors->has('installation_date'))
+                        <span style="color:red">{{$errors->first('installation_date')}}</span>
+                    @endif
+                </div>
+            </div>
+            <div class="row form-row">
+                <div class="col-sm-3 label-div">
                     <label>Integration Date : </label>
                 </div>
                 <div class="col-sm-9">
@@ -256,9 +269,6 @@
                 </div>
                 <div class="col-sm-9">
                     <input type="date" class="form-control" name="dismentale_date" />
-                    @if($errors->has('dismentale_date'))
-                        <span style="color:red">{{$errors->first('dismentale_date')}}</span>
-                    @endif
                 </div>
             </div>
             <div class="row form-row">
@@ -267,9 +277,6 @@
                 </div>
                 <div class="col-sm-9">
                     <input type="date" class="form-control" name="at_date" />
-                    @if($errors->has('at_date'))
-                        <span style="color:red">{{$errors->first('at_date')}}</span>
-                    @endif
                 </div>
             </div>
             <div class="row form-row">
@@ -278,9 +285,6 @@
                 </div>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" name="at_status" />
-                    @if($errors->has('at_status'))
-                        <span style="color:red">{{$errors->first('at_status')}}</span>
-                    @endif
                 </div>
             </div>
             <div class="row form-row">
@@ -300,9 +304,6 @@
                 </div>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" name="completion_status" />
-                    @if($errors->has('completion_status'))
-                        <span style="color:red">{{$errors->first('completion_status')}}</span>
-                    @endif
                 </div>
             </div>
             <div class="row form-row">
@@ -425,7 +426,7 @@
                     <label>Vendor Payment : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="vendor_payment" />
+                    <input type="text" class="form-control" name="vendor_payment_status" />
                 </div>
             </div>
             <div class="row form-row">
