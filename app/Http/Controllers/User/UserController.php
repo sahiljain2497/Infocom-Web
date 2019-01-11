@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 use Validator;
 use DB;
@@ -84,15 +85,25 @@ class UserController extends Controller
             'email' => 'required|max:255',
             'mobile' => 'required',
             'dob' => 'required',
+            'password' => 'confirmed'
         ]);
         if($v->fails())
-            return redirect()->route('user.user.index')->withErrors($v);
+            return redirect()->route('user.user.index')->withErrors($v)->with('unsuccess','USER UPDATION FAILED');
         else{
+            if($request['password'] == ''){
             DB::table('users')->where('id',$id)->update(['emp_id' => $request->emp_id,
             'name' => $request->name,'aadhar' => $request->aadhar, 'email' => $request->email,
              'mobile' => $request->mobile, 'dob' => $request->dob, 'pan' => $request->pan,
              'experience' => $request->experience ]);
-            return redirect()->route('user.user.index');
+            }
+            else{
+            $request['password'] = Hash::make($request['password']);
+            DB::table('users')->where('id',$id)->update(['emp_id' => $request->emp_id,
+            'name' => $request->name,'aadhar' => $request->aadhar, 'email' => $request->email,
+             'mobile' => $request->mobile, 'dob' => $request->dob, 'pan' => $request->pan,
+             'experience' => $request->experience ,'password' => $request->password]);
+            }
+            return redirect()->route('user.user.index')->with('success','USER UPDATION SUCCESSFUL');
         }
     }
 

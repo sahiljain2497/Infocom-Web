@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Auth;
 use Validator;
+use DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -81,15 +83,25 @@ class UserController extends Controller
             'email' => 'required|max:255',
             'mobile' => 'required',
             'dob' => 'required',
+            'password' => 'confirmed'
         ]);
         if($v->fails()){
-            return redirect()->route('coordinator.user.index')->withErrors($v);}
+            return redirect()->route('coordinator.user.index')->withErrors($v)->with('unsuccess','USER UPDATION FAILED');}
         else{
-            User::where('id',$id)->update(['emp_id' => $request->emp_id,
-            'name' => $request->name,'aadhar' => $request->aadhar, 'email' => $request->email,
-             'mobile' => $request->mobile, 'dob' => $request->dob, 'pan' => $request->pan,
-             'experience' => $request->experience ]);
-            return redirect()->route('coordinator.user.index');
+            if($request['password'] == ''){
+                DB::table('users')->where('id',$id)->update(['emp_id' => $request->emp_id,
+                'name' => $request->name,'aadhar' => $request->aadhar, 'email' => $request->email,
+                 'mobile' => $request->mobile, 'dob' => $request->dob, 'pan' => $request->pan,
+                 'experience' => $request->experience ]);
+            }
+            else{
+                $request['password'] = Hash::make($request['password']);
+                DB::table('users')->where('id',$id)->update(['emp_id' => $request->emp_id,
+                'name' => $request->name,'aadhar' => $request->aadhar, 'email' => $request->email,
+                 'mobile' => $request->mobile, 'dob' => $request->dob, 'pan' => $request->pan,
+                 'experience' => $request->experience ,'password' => $request->password]);
+                }
+                return redirect()->route('coordinator.user.index')->with('success','USER UPDATION SUCCESSFUL');
         }
     }
 

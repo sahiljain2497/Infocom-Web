@@ -6,6 +6,18 @@
         <h1 class="text-center">MY PROFILE : </h1>
     </div>
     <hr/>
+    @if(Session::has('success'))
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{Session::get('success')}}</strong>
+        </div>
+        @endif
+        @if(Session::has('unsuccess'))
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{Session::get('unsuccess')}}</strong>
+        </div>
+        @endif
     <form method="POST" action="{{route('user.user.update',$user->id)}}">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}
@@ -113,6 +125,25 @@
             </div>
             <div class="col-sm-9">
                 <input type="text" value="{{$user->salary}}" class="form-control" readonly/>
+            </div>
+        </div>
+        <div class="row form-row">
+            <div class="col-sm-3 label-div">
+                <label>Password : </label>
+            </div>
+            <div class="col-sm-9">
+                <input type="password" name="password" class="form-control"/>
+                @if($errors->has('password'))
+                    <span style="color:red;">{{$errors->first('password')}}</span>
+                @endif
+            </div>
+        </div>
+        <div class="row form-row">
+            <div class="col-sm-3 label-div">
+                <label>Confirm Password : </label>
+            </div>
+            <div class="col-sm-9">
+                <input type="password" name="password_confirmation" class="form-control"/>
             </div>
         </div>
         <div class="row text-center">
