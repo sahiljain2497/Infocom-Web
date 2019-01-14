@@ -23,3 +23,52 @@ input[type="file"] {
 .reciever-row{
     display: none;
 }
+.sender,.reciever{
+    margin-top: 10px;
+    display:none;
+    padding: 5px;
+    border:1px solid lightgray;
+}
+.search-btn{
+    margin-top: 5px;
+    width:250px;
+}
+.form-container{
+    margin:2% auto;
+}
+.tbody_2_row_1:hover{
+    cursor: pointer;
+    background: lightgray;
+}
+.col-1,.col-1 input{
+    max-width:55px;
+}
+.col-2,.col-2 input{
+    width: 400px;
+}
+.col-3,.col-3 input,.col-4,.col-4 input,.col-5,.col-5 input{
+    max-width:80px;
+}
+.col-6,.col-6 input,.col-7,.col-7 input{
+    max-width:100px;
+}
+.col-8,.col-8 input{
+    max-width:120px;
+}
+.col-9,.col-9 input{
+    max-width:80px;
+}
+.col-10,.col-10 input{
+    max-width:100px;
+}
+.table .tbody_1 td{
+    padding:0px;
+}
+.table-container{
+    width:1404px;
+    margin: 20px auto;
+}
+th{
+    border-left:1px solid darkgray;
+    border-right: 1px solid darkgray;
+}

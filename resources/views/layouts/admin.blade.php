@@ -25,5 +25,6 @@
     <script src="{{ asset('js/jquery.js')}}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/admin-functions.js')}}"></script>
+    @yield('javascripts')
 </body>
 </html>

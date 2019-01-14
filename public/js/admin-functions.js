@@ -12,7 +12,3 @@ function invoiceType(){
         $('.reciever-row').css('display','flex');
     }
 }
-
-$(document).ready(function(){
-
-})

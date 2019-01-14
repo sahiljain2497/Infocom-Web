@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Invoice;
 use Illuminate\Support\Facades\Storage;
-
+use App\Information;
 class InvoiceController extends Controller
 {
     /**
@@ -24,8 +24,12 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        if($request->ajax()){
+            $info = Information::first();
+            return response()->json([$info,'success'=>true]);
+        }
         return view('admin.invoice.create');
     }
 
