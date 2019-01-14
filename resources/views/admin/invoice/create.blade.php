@@ -162,6 +162,7 @@
 	        					<th>Tax (%)</th>
 	        					<th>Tax (Rs)</th>
 	        					<th>Total</th>
+	        					<th></th>
 	        				</thead>
 	        				<tbody class="tbody_1">
 	        				</tbody>
@@ -171,6 +172,25 @@
 	        					</tr>
 	        				</tbody>
 	        			</table>
+	        		</div>
+	        	</div>
+	        	<hr/>
+	        	<div class="table-container">
+	        		<div class="row">
+	        			<div class="col-sm-2 label-div">
+	        				<label>Invoice Description : </label>
+	        			</div>
+	        			<div class="col-sm-10">
+	        				<input type="text" placeholder="Description" name="invoice_description" class="form-control">
+		        		</div>
+	        		</div>
+	        		<div class="row">
+	        			<div class="col-sm-2 label-div">
+	        				<label>Invoice Amount : </label>
+	        			</div>
+	        			<div class="col-sm-10">
+	        				<input type="text" placeholder="Total Amount" class="form-control" name="invoice_total">
+		        		</div>
 	        		</div>
 	        	</div>
 	        	<div class="row">

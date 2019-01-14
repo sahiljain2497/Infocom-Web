@@ -36,6 +36,9 @@ input[type="file"] {
 .form-container{
     margin:2% auto;
 }
+.tbody_2_row_1{
+    border:1px solid lightgray;
+}
 .tbody_2_row_1:hover{
     cursor: pointer;
     background: lightgray;
