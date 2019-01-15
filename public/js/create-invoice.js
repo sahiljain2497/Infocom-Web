@@ -46,8 +46,76 @@ function openSenderBox(){
 function openRecieverBox(){
 	$('.reciever').slideToggle();
 }
+function invoiceType(){
+    let value = document.getElementById('invoice_type').value;
+    console.log(value);
+    if(value == 'Incoming')
+    {
+        $('.sender-row').css('display','flex');
+        $('.reciever-row').css('display','none');
+    }
+    else
+    {
+        $('.sender-row').css('display','none');
+        $('.reciever-row').css('display','flex');
+    }
+}
+
+function showTableData() {
+        let items = {};
+        let table = document.getElementById('item-table');
+        for (i = 1; i < table.rows.length -1 ; i++) {
+            let arr = [];
+            var objCells = table.rows.item(i).cells;
+            for (var j = 0; j < objCells.length -1; j++) {
+                arr.push(objCells.item(j).firstChild.value);
+            }
+            items[i] = arr;
+        }
+        //console.log(items);
+        return items;
+    }
+
+function saveBill(){
+    // console.log("ada");
+    let data = {
+        invoice_type : $('#invoice_type').val(),
+        invoice_no : $('[name="invoice_no"]').val(),
+        invoice_date : $('[name="invoice_date"]').val(),
+        sender_companyname : $('#sender_companyname').val(),
+        sender_gstin : $('#sender_gstin').val(),
+        sender_address_1 : $('#sender_address_1').val(),
+        sender_address_2 : $('#sender_address_2').val(),
+        sender_pan : $('#sender_pan').val(),
+        sender_contact : $('#sender_contact').val(),
+        reciever_companyname : $('reciever_companyname').val(),
+        reciever_gstin : $('#reciever_gstin').val(),
+        reciever_address_1 : $('#reciever_address_1').val(),
+        reciever_address_2 : $('#reciever_address_2').val(),
+        reciever_pan : $('#reciever_pan').val(),
+        reciever_contact : $('#reciever_contact').val(),
+        invoice_description : $('[name="invoice_description"]').val(),
+        invoice_total : $('[name="invoice_total"]').val()    
+    }
+    items = showTableData();
+    data.items_table = items;
+    $.ajaxSetup({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+    });
+    $.ajax({
+        url:'/admin/invoice',
+        type: 'POST',
+        data: data,
+        success:function(data){
+            console.log(data);
+        }
+    });
+}
 
 $(document).ready(function(){
+	$('#save_bill').click(function(){
+        saveBill();
+    })
 	$.ajaxSetup({
 	    headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
 	});
@@ -60,7 +128,7 @@ $(document).ready(function(){
 	    	address_1 = data[0].address_line_1;
 	    	address_2 = data[0].address_line_2;
 	    	pan = data[0].pan;
-	    	contact = data[0].contact;
+	    	contact = data[0].mobile;
 	    	setInvoiceDetails();
 		}
 	});	

@@ -41,14 +41,18 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {   
-        if ($request->file('invoice_file')) {
+        if($request->ajax()){
+            Invoice::create($request->all());
+            return response()->json([$request->all(),'success'=>true]);
+        }
+        else if ($request->file('invoice_file')) {
             $file     = $request->file('invoice_file');
             $fileName   = time().'.'.$file->getClientOriginalExtension();
             Storage::disk('local')->put('/invoices/'.$fileName,file_get_contents($file));
             $request['invoice_path'] = $fileName;
+            Invoice::create($request->all());
+            return view('admin.invoice.index');
         }
-        Invoice::create($request->all());
-        return view('admin.invoice.index');
     }
 
     /**

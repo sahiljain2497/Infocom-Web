@@ -149,7 +149,7 @@
 	        	</div>
 	        	<div class="row">
 	        		<div class="table-container">
-	        			<table class="table">
+	        			<table class="table" id="item-table">
 	        				<thead>
 	        					<th>S.no</th>
 	        					<th>Item</th>
@@ -195,7 +195,7 @@
 	        	</div>
 	        	<div class="row">
 	        		<div class="col-md-12 text-center">
-	        			<input type="submit" value="SAVE BILL" class="btn btn-primary search-btn">
+	        			<input id="save_bill" type="button" value="SAVE BILL" class="btn btn-primary search-btn">
 	        		</div>
 	        	</div>
 	        	</form>
