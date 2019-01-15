@@ -18,6 +18,14 @@
             </div>
         </div>
         <hr/>
+        @if(Session::has('delete'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>{{Session::get('delete')}}</strong>
+        </div>
+        @endif
         <div class="form-container-invoice">
             <form method="GET">
             @csrf 
@@ -26,7 +34,18 @@
                         <label>Invoice No.</label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="text" name="invoice_id" class="form-control" placeholder="Enter invoice No."/>
+                        <input type="text" name="search_no" value="{{$num}}" class="form-control" placeholder="Enter invoice No."/>
+                    </div>
+                </div>
+                <div class="row form-row">
+                    <div class="col-sm-3">
+                        <label>Invoice Type : </label>
+                    </div>
+                    <div class="col-sm-9">
+                        <select name="search_type" class="form-control">
+                            <option value="incoming" {{$type == 'incoming' ? 'selected':''}}>Incoming</option>
+                            <option value="outgoing" {{$type == 'outgoing' ? 'selected':''}}>Outgoing</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row form-row">
@@ -34,23 +53,29 @@
                         <label>Start Date</label>
                     </div>
                     <div class="col-sm-9">
-                        <input type="date" name="start" class="form-control"/>
+                        <input type="date" name="start" value="{{$start}}" class="form-control"/>
                     </div>
                 </div>
                 <div class="row form-row">
-                <div class="col-sm-3">
+                    <div class="col-sm-3">
                         <label>End Date</label>
                     </div>
-                    <div class="col-sm-9 options">
-                        <input type="date" name="end" class="form-control"/>
+                    <div class="col-sm-9">
+                        <input type="date" name="end" value="{{$end}}" class="form-control"/>
                     </div>
                 </div>
-            </form>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 options">
-                <button class="btn btn-primary option-button">SEARCH INVOICE</button>
+            <div class="row">
+                <div class="col-sm-12 options">
+                    <button class="btn btn-primary option-button">SEARCH INVOICE</button>
+                </div>
             </div>
+        </form>
+        </div>       
+        <hr/>
+        <div class="row">
+            @if(count($invoices) > 0)
+                @include('admin.invoice.listing')
+            @endif
         </div>
     </div>
 <div class="modal" id="uploadModal">

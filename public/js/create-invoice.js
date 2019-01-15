@@ -77,7 +77,6 @@ function showTableData() {
     }
 
 function saveBill(){
-    // console.log("ada");
     let data = {
         invoice_type : $('#invoice_type').val(),
         invoice_no : $('[name="invoice_no"]').val(),
@@ -88,7 +87,7 @@ function saveBill(){
         sender_address_2 : $('#sender_address_2').val(),
         sender_pan : $('#sender_pan').val(),
         sender_contact : $('#sender_contact').val(),
-        reciever_companyname : $('reciever_companyname').val(),
+        reciever_companyname : $('#reciever_companyname').val(),
         reciever_gstin : $('#reciever_gstin').val(),
         reciever_address_1 : $('#reciever_address_1').val(),
         reciever_address_2 : $('#reciever_address_2').val(),
@@ -107,7 +106,8 @@ function saveBill(){
         type: 'POST',
         data: data,
         success:function(data){
-            console.log(data);
+            //console.log(data);
+            alert("INVOICE CREATED SUCCESSFULLY");
         }
     });
 }

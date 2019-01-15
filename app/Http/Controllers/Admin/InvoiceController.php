@@ -14,9 +14,24 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.invoice.index');
+        $num = $request->input('search_no');
+        $start = $request->input('start');
+        $end = $request->input('end');
+        $type = $request->input('search_type');
+        $invoices = [];
+        if($num){
+            $invoices = Invoice::where('invoice_no','=',$num)->where('invoice_type','=',$type)->get();
+        }
+        else if($start){
+            $invoices = Invoice::whereDate('invoice_date','>=',$start);
+            if($end){
+                $invoices = Invoice::whereDate('invoice_date','<=',$end);
+            }
+            $invoices = $invoices->get();
+        }
+        return view('admin.invoice.index',['start' => $start,'end' => $end,'num' => $num,'type'=>$type,'invoices' => $invoices]);
     }
 
     /**
@@ -63,7 +78,7 @@ class InvoiceController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -74,7 +89,9 @@ class InvoiceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $invoice = Invoice::where('id','=',$id)->first();
+        // dd($invoice->items_table);
+        return view('admin.invoice.edit',['invoice' => $invoice]);
     }
 
     /**
@@ -86,7 +103,8 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $invoice=Invoice::where('id','=',$id)->first()->update($request->all());        
+        return response()->json(['success'=> true]);
     }
 
     /**
@@ -97,6 +115,8 @@ class InvoiceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $invoice = Invoice::findOrFail($id);
+        $invoice->delete();
+        return redirect()->route('invoice.index')->with('delete','INVOICE DELETED!');
     }
 }
