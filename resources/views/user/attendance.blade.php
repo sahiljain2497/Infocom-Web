@@ -33,7 +33,7 @@
         </div>
         <hr/>
         @if(count($records) != 0)
-            @include('user.task.listing')
+            @include('user.listing')
         @elseif(!empty($start) && !empty($end))
             <div class="row">
                 <div class="col-md-12">

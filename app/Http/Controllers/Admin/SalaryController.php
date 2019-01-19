@@ -1,30 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Coordinator;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Auth;
-use Validator;
-use App\Expense;
 
-class ExpenseController extends Controller
+class SalaryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $start = $request->input('start');
-        $end = $request->input('end');
-        $empid = Auth::user()->emp_id;
-        if($start == '' || $end == '')
-            $records = [];
-        else
-            $records = Expense::findExpense($empid,$start,$end)->paginate(10);
-        return view('coordinator.expense.index',[ 'start'=>$start , 'end' => $end , 'empid' => $empid ,'records' => $records ]);
+        //
     }
 
     /**
@@ -32,10 +22,9 @@ class ExpenseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -46,20 +35,7 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        $v = Validator::make($request->all(),[
-            'amount' => 'required',
-            'date' => 'required',
-            'note' => 'required',
-        ]);
-        if($v->fails()){
-            return redirect()->route('coordinator.expense.index')->withErrors($v)->with('unsuccess-message','EXPENSE INFORMATION INVALID');
-        }
-        else{
-            Expense::forceCreate(['emp_id' => Auth::user()->emp_id,'amount' => $request->amount,
-            'date' => $request->date,'note' => $request->note,'coordinate' => 'none',
-            'c_approved' => 'approved','type' => $request->type]);
-            return redirect()->route('coordinator.expense.index')->with('success-message','EXPENSE APPLIED SUCCESSFULLY');
-        }
+        //
     }
 
     /**

@@ -83,6 +83,14 @@
                 </div>
                 <div class="row form-row">
                     <div class="col-sm-3 label-div">
+                        <label>Expense Type</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="text" name="type" class="form-control"/>
+                    </div>
+                </div>
+                <div class="row form-row">
+                    <div class="col-sm-3 label-div">
                         <label>Amount</label>
                     </div>
                     <div class="col-sm-9">

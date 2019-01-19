@@ -62,9 +62,7 @@ class DprController extends Controller
         'customer' => 'required',
         'circle' => 'required',
         'site_id_a' => 'required',
-        'site_id_b' => 'required',
         'site_name_a' => 'required',
-        'site_name_b' => 'required',
         'link_id' => 'required',
         'site_type' => 'required',
         'sow' => 'required',
@@ -72,7 +70,6 @@ class DprController extends Controller
         'rate' => 'required',
         'amount' => 'required',
         'payterm' => 'required',
-        'first_mile_amount' => 'required',
         'allocation_date' => 'required',
         'integration_date' => 'required',
         'installation_date' => 'required',
@@ -120,7 +117,36 @@ class DprController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $v = Validator::make($request->all(),[
+            'date' => 'required',
+            'month' => 'required',
+            'project' => 'required',
+            'customer' => 'required',
+            'circle' => 'required',
+            'site_id_a' => 'required',
+            'site_name_a' => 'required',
+            'link_id' => 'required',
+            'site_type' => 'required',
+            'sow' => 'required',
+            'quantity' => 'required',
+            'rate' => 'required',
+            'amount' => 'required',
+            'payterm' => 'required',
+            'allocation_date' => 'required',
+            'integration_date' => 'required',
+            'installation_date' => 'required',
+            'site_completion_date' => 'required',
+            'anteena_size' => 'required'
+            ]);
+            if($v->fails()){
+                return redirect()->route('coordinator.dpr.show',$id)->withErrors($v)->with('unsuccess-message','DPR UPDATION NOT POSSIBLE');
+            }
+            else{
+                $dpr = Dpr::findOrFail($id);
+                $dpr->fill($request->except(['_token','_method']));
+                $dpr->save();
+                return redirect()->route('coordinator.dpr.show',$id)->with('success-message','DPR UPDATED SUCCESSFULLY');
+            }
     }
 
     /**

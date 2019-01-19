@@ -56,7 +56,7 @@ class ExpenseController extends Controller
         else{
             Expense::forceCreate(['emp_id' => Auth::user()->emp_id,'amount' => $request->amount,
             'date' => $request->date,'note' => $request->note,'c_approved' => 'approved',
-            'a_approved' => 'approved','coordinate' => 'none']);
+            'a_approved' => 'approved','coordinate' => 'none','type' => $request->type]);
             return redirect()->route('expense.index')->with('success-message','EXPENSE APPLIED SUCCESSFULLY');
         }
     }

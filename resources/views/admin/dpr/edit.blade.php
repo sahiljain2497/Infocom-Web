@@ -80,6 +80,14 @@
             </div>
             <div class="row form-row">
                 <div class="col-sm-3 label-div">
+                    <label>Activity Type : </label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="activity_type" value="{{$data->activity_type}}" />
+                </div>
+            </div>
+            <div class="row form-row">
+                <div class="col-sm-3 label-div">
                     <label>Site ID A : </label>
                 </div>
                 <div class="col-sm-9">
@@ -120,18 +128,18 @@
             </div>
             <div class="row form-row">
                 <div class="col-sm-3 label-div">
-                    <label>Site Type : </label>
+                    <label>Anteena Size : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="site_type" value="{{$data->site_type}}" />
+                    <input type="text" class="form-control" name="anteena_size" value="{{$data->anteena_size}}" />
                 </div>
             </div>
             <div class="row form-row">
                 <div class="col-sm-3 label-div">
-                    <label>Activity Type : </label>
+                    <label>Site Type : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="activity_type" value="{{$data->activity_type}}" />
+                    <input type="text" class="form-control" name="site_type" value="{{$data->site_type}}" />
                 </div>
             </div>
             <div class="row form-row">
@@ -172,14 +180,6 @@
                 </div>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" name="payterm" value="{{$data->payterm}}" />
-                </div>
-            </div>
-            <div class="row form-row">
-                <div class="col-sm-3 label-div">
-                    <label>1<sup>st</sup> Mile Amount: </label>
-                </div>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" name="first_mile_amount" value="{{$data->first_mile_amount}}" />
                 </div>
             </div>
             <div class="row form-row">
@@ -244,14 +244,6 @@
                 </div>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" name="completion_status" value="{{$data->completion_status}}" />
-                </div>
-            </div>
-            <div class="row form-row">
-                <div class="col-sm-3 label-div">
-                    <label>Anteena Size : </label>
-                </div>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" name="anteena_size" value="{{$data->anteena_size}}" />
                 </div>
             </div>
             <div class="row form-row">
@@ -328,14 +320,6 @@
             </div>
             <div class="row form-row">
                 <div class="col-sm-3 label-div">
-                    <label>Team Name : </label>
-                </div>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" name="team_name" value="{{$data->team_name}}"  />
-                </div>
-            </div>
-            <div class="row form-row">
-                <div class="col-sm-3 label-div">
                     <label>Done By : </label>
                 </div>
                 <div class="col-sm-9">
@@ -364,6 +348,14 @@
                 </div>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" name="vendor_payment_status" value="{{$data->vendor_payment_status}}" />
+                </div>
+            </div>
+            <div class="row form-row">
+                <div class="col-sm-3 label-div">
+                    <label>Team Name : </label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="team_name" value="{{$data->team_name}}"  />
                 </div>
             </div>
             <div class="row form-row">

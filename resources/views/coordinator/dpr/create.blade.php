@@ -95,13 +95,45 @@
                         <span style="color:red">{{$errors->first('cluster')}}</span>
                     @endif
                 </div>
+            </div>            
+            <div class="row form-row">
+                <div class="col-sm-3 label-div">
+                    <label>Activity Type : </label>
+                </div>
+                <div class="col-sm-9">
+                    <select class="form-control" name="activity_type">
+                        <option value="MW Installation and Commission">MW Installation and Commission</option> 
+                        <option value="MW De-installation">MW De-installation</option> 
+                        <option value="MW ATP">MW ATP </option>
+                        <option value="LOGISTIC">Logistic </option>
+                        <option value="BTS INSTALLATION">BTS Installation </option> 
+                        <option value="BTS De-installation">BTS De-installation</option> 
+                        <option value="BTS ATP">BTS ATP</option>
+                        <option value="MW/BTS Packing">MW/BTS Packing </option>
+                        <option value="LOS SURVEY">LOS SURVEY </option>
+                        <option value="RF SURVEY">RF SURVEY </option>
+                        <option value="OFC">OFC </option>
+                        <option value="OHF">OHF</option>
+                        <option value="MAST/POLE">MAST/POLE </option>
+                        <option value="UBR Installation">UBR Installation & Commission</option> 
+                        <option value="UBR De-installation">UBR De-installation</option> 
+                        <option value="l2 survey">l2 survey</option>
+                        <option value="EMF">EMF</option>
+                        <option value="CLOT">CLOT</option>
+                        <option value="SCVT">SCVT</option>
+                        <option value="SCFT">SCFT</option>
+                    </select>
+                    @if($errors->has('activity_type'))
+                        <span style="color:red">{{$errors->first('activity_type')}}</span>
+                    @endif
+                </div>
             </div>
             <div class="row form-row">
                 <div class="col-sm-3 label-div">
                     <label>Site ID A : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="site_id_a" />
+                    <input type="text" class="form-control" name="site_id_a" id="site_id_a" onfocusout="setLinkId()" />
                     @if($errors->has('site_id_a'))
                         <span style="color:red">{{$errors->first('site_id_a')}}</span>
                     @endif
@@ -112,10 +144,7 @@
                     <label>Site ID B : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="site_id_b" />
-                    @if($errors->has('site_id_b'))
-                        <span style="color:red">{{$errors->first('site_id_b')}}</span>
-                    @endif
+                    <input type="text" class="form-control" name="site_id_b" id="site_id_b" onfocusout="setLinkId()" />
                 </div>
             </div>
             <div class="row form-row">
@@ -135,9 +164,6 @@
                 </div>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" name="site_name_b" />
-                    @if($errors->has('site_name_b'))
-                        <span style="color:red">{{$errors->first('site_name_b')}}</span>
-                    @endif
                 </div>
             </div>
             <div class="row form-row">
@@ -145,9 +171,20 @@
                     <label>Link ID : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="link_id" />
+                    <input type="text" class="form-control" name="link_id" id="link_id" />
                     @if($errors->has('link_id'))
                         <span style="color:red">{{$errors->first('link_id')}}</span>
+                    @endif
+                </div>
+            </div>
+            <div class="row form-row">
+                <div class="col-sm-3 label-div">
+                    <label>Anteena Size : </label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="anteena_size" />
+                    @if($errors->has('anteena_size'))
+                        <span style="color:red">{{$errors->first('anteena_size')}}</span>
                     @endif
                 </div>
             </div>
@@ -159,17 +196,6 @@
                     <input type="text" class="form-control" name="site_type" />
                     @if($errors->has('site_type'))
                         <span style="color:red">{{$errors->first('site_type')}}</span>
-                    @endif
-                </div>
-            </div>
-            <div class="row form-row">
-                <div class="col-sm-3 label-div">
-                    <label>Activity Type : </label>
-                </div>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" name="activity_type" />
-                    @if($errors->has('activity_type'))
-                        <span style="color:red">{{$errors->first('activity_type')}}</span>
                     @endif
                 </div>
             </div>
@@ -197,10 +223,10 @@
             </div>
             <div class="row form-row">
                 <div class="col-sm-3 label-div">
-                    <label>Rate : </label>
+                    <label>Rate of PO: </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="rate" />
+                    <input type="text" class="form-control" name="rate" onfocusout="setAmount()"/>
                     @if($errors->has('rate'))
                         <span style="color:red">{{$errors->first('rate')}}</span>
                     @endif
@@ -222,20 +248,14 @@
                     <label>Payterm : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="payterm" />
+                    <select class="form-control" name="payterm">
+                        <option value="YES">YES</option>
+                        <option value="NO">NO</option>
+                        <option value="30">30</option>
+                        <option value="60">60</option>
+                    </select>
                     @if($errors->has('payterm'))
                         <span style="color:red">{{$errors->first('payterm')}}</span>
-                    @endif
-                </div>
-            </div>
-            <div class="row form-row">
-                <div class="col-sm-3 label-div">
-                    <label>1<sup>st</sup> Mile Amount: </label>
-                </div>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" name="first_mile_amount" />
-                    @if($errors->has('first_mile_amount'))
-                        <span style="color:red">{{$errors->first('first_mile_amount')}}</span>
                     @endif
                 </div>
             </div>
@@ -317,17 +337,6 @@
             </div>
             <div class="row form-row">
                 <div class="col-sm-3 label-div">
-                    <label>Anteena Size : </label>
-                </div>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" name="anteena_size" />
-                    @if($errors->has('anteena_size'))
-                        <span style="color:red">{{$errors->first('anteena_size')}}</span>
-                    @endif
-                </div>
-            </div>
-            <div class="row form-row">
-                <div class="col-sm-3 label-div">
                     <label>Tower Type A : </label>
                 </div>
                 <div class="col-sm-9">
@@ -347,7 +356,10 @@
                     <label>Payment Status : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="payment_status" />
+                    <select class="form-control" name="payment_status">
+                        <option value="yes">YES</option>
+                        <option value="no">NO</option>
+                    </select>
                 </div>
             </div>
             <div class="row form-row">
@@ -355,7 +367,10 @@
                     <label>WCC Status : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="wcc_status" />
+                    <select class="form-control" name="wcc_status" name="payment_status">
+                        <option value="yes">YES</option>
+                        <option value="no">NO</option>
+                    </select>
                 </div>
             </div>
             <div class="row form-row">
@@ -400,18 +415,13 @@
             </div>
             <div class="row form-row">
                 <div class="col-sm-3 label-div">
-                    <label>Team Name : </label>
-                </div>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" name="team_name" />
-                </div>
-            </div>
-            <div class="row form-row">
-                <div class="col-sm-3 label-div">
                     <label>Done By : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="done_by" />
+                    <select class="form-control" name="done_by">
+                        <option value="vendor">Vendor</option>
+                        <option value="inhouse">inhouse</option>
+                    </select>
                 </div>
             </div>
             <div class="row form-row">
@@ -436,6 +446,14 @@
                 </div>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" name="vendor_payment_status" />
+                </div>
+            </div>
+            <div class="row form-row">
+                <div class="col-sm-3 label-div">
+                    <label>Team Name : </label>
+                </div>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="team_name" />
                 </div>
             </div>
             <div class="row form-row">

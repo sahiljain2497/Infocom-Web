@@ -33,7 +33,6 @@ class CreateDprsTable extends Migration
             $table->string('rate');
             $table->string('amount');
             $table->string('payterm');
-            $table->string('first_mile_amount');
             $table->date('allocation_date');
             $table->date('installation_date');
             $table->date('integration_date');

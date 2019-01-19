@@ -25,5 +25,6 @@
     <main class="py-4">
         @yield('content')
     </main>
+<script src="{{ asset('js/dpr.js')}}"></script>
 </body>
 </html>

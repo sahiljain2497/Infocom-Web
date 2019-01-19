@@ -17,6 +17,7 @@ class CreateExpensesTable extends Migration
             $table->increments('id');
             $table->date('date');
             $table->string('emp_id');
+            $table->string('type');
             $table->longText('note');
             $table->string('amount');
             $table->string('coordinate');
