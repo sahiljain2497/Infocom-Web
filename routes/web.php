@@ -86,6 +86,8 @@ Route::namespace('Admin')
 	Route::resource('task','TaskController');
 	Route::resource('expense','ExpenseController');
 	Route::resource('employee_expense','EmployeeExpenseController');
+	Route::resource('vendor','VendorController');
+	Route::resource('salary','SalaryController');
 });
 
 Route::namespace('Admin')

@@ -19,6 +19,8 @@
                 <li class="nav-item {{ Request::segment(2) == 'profile' ? 'active' : '' }}"><a class="nav-link" href="{{route('profile.index')}}"><i class="fas fa-user-alt"></i> Profile</a></li>
                 <li class="nav-item {{ Request::segment(2) == 'task' ? 'active' : '' }}"><a class="nav-link" href="{{route('task.index')}}"><i class="fas fa-user-alt"></i> Task</a></li>
                 <li class="nav-item {{ Request::segment(2) == 'expense' ? 'active' : '' }}"><a class="nav-link" href="{{ route('expense.index')}}"><i class="fas fa-rupee-sign"></i> Expense</a></li>
+                <li class="nav-item {{ Request::segment(2) == 'vendor' ? 'active' : '' }}"><a class="nav-link" href="{{ route('vendor.index')}}"><i class="fas fa-rupee-sign"></i> Vendor</a></li>
+                <li class="nav-item {{ Request::segment(2) == 'salary' ? 'active' : '' }}"><a class="nav-link" href="{{ route('salary.index')}}"><i class="fas fa-rupee-sign"></i> Salary</a></li>
                 <li class="nav-item {{ Request::segment(2) == 'message' ? 'active' : '' }}"><a class="nav-link" href="{{route('message.index')}}"><i class="fas fa-user-alt"></i> Message</a></li>
             </ul>
                     <!-- Right Side Of Navbar -->

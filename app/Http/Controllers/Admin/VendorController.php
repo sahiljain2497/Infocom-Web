@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Vendor;
 
 class VendorController extends Controller
 {
@@ -12,9 +13,18 @@ class VendorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $company_name = $request->input('company_name');
+        $records = [];
+        if($company_name){
+            $records = Vendor::where('company_name','LIKE','%'.$company_name.'%')->get();
+        }
+        else{
+            $records = Vendor::query();
+        }
+        $records = $records->paginate(10);
+        return view('admin.vendor.index',['records' => $records , 'company_name' => $company_name ]);
     }
 
     /**
@@ -24,7 +34,7 @@ class VendorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.vendor.create');
     }
 
     /**
@@ -35,7 +45,8 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Vendor::forceCreate($request->all());
+        return response()->json(['success' => true]);
     }
 
     /**

@@ -1,0 +1,11 @@
+.tbody_2_row{
+    border:1px solid lightgray;
+}
+.tbody_2_row:hover{
+    cursor: pointer;
+    background: lightgray;
+}
+.search-btn{
+    margin-top: 5px;
+    width:250px;
+}
