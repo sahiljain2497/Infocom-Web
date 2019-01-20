@@ -68,7 +68,8 @@ class VendorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Vendor::where('id','=',$id)->first();
+        return view('admin.vendor.edit',['data' => $data]);
     }
 
     /**
@@ -80,7 +81,9 @@ class VendorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $vendor = Vendor::where('id','=',$id)->first();
+        $vendor->update($request->all());
+        return response()->json(['sucess'=>true]);
     }
 
     /**
@@ -91,6 +94,8 @@ class VendorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $vendor = Vendor::findOrFail($id);
+        $vendor->delete();
+        return redirect()->route('vendor.index')->with('success-message','VENDOR DELETED');
     }
 }
