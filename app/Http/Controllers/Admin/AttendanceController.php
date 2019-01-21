@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Attendance;
 use Validator;
-
+use Carbon\Carbon;
 class AttendanceController extends Controller
 {
     /**
@@ -112,5 +112,20 @@ class AttendanceController extends Controller
         $end = $end[0];
         Attendance::where('id',$id)->delete();
         return redirect()->route('attendance.index',['emp_id'=>$_POST['empid'],'start'=>$start,'end'=>$end])->with('delete-message','RECORD DELETED SUCCESSFULLY');
+    }
+    public function getDays(Request $request){
+        $date = $request->input('date');
+        $empid = $request->input('empid');
+        $dateCarbon_1 = Carbon::parse($date);
+        $dateCarbon_2 = Carbon::parse($date);
+        $daysInMonth = $dateCarbon_1->daysInMonth;
+        $start = $dateCarbon_1->startOfMonth();
+        $end = $dateCarbon_2->endOfMonth();
+        $records = Attendance::where('emp_id','=',$empid)
+                    ->whereDate('created_at','>=',$start)
+                    ->whereDate('created_at','<=',$end)->get();
+        $present = count($records);
+        $absent = $daysInMonth - $present;
+        return response()->json(['present' => $present,'absent' => $absent,'success' => true]);
     }
 }

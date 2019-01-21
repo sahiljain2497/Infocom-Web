@@ -88,10 +88,11 @@ Route::namespace('Admin')
 	Route::resource('employee_expense','EmployeeExpenseController');
 	Route::resource('vendor','VendorController');
 	Route::resource('salary','SalaryController');
+	Route::get('computedays','AttendanceController@getDays');
 });
 
-Route::namespace('Admin')
-	->prefix('admin')
+Route::namespace('Superadmin')
+	->prefix('superadmin')
 	->middleware(['is_superadmin'])
 	->group(function () {
     Route::get('/', 'HomeController@index')->name('home');

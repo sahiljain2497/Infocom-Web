@@ -16,13 +16,13 @@ class CreateSalariesTable extends Migration
         Schema::create('salaries', function (Blueprint $table) {
             $table->increments('id');
             $table->string('emp_id');
-            $table->string('present');
-            $table->string('absent');
-            $table->string('gross');
-            $table->string('pf');
-            $table->string('esi');
-            $table->string('net_pay');
-            $table->string('month');
+            $table->string('present')->nullable();
+            $table->string('absent')->nullable();
+            $table->string('gross')->nullable();
+            $table->string('pf')->nullable();
+            $table->string('esi')->nullable();
+            $table->string('net_pay')->nullable();
+            $table->string('date')->nullable();
             $table->timestamps();
         });
     }

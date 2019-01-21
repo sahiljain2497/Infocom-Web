@@ -12,9 +12,11 @@ class SalaryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $emp_id = $request->input('emp_id');
+        $date = $request->input('salary_date');
+        return view('admin.salary.index',['emp_id' => $emp_id , 'date' => $date]);
     }
 
     /**
@@ -24,7 +26,7 @@ class SalaryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.salary.create');
     }
 
     /**
