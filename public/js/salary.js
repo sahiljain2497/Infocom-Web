@@ -10,7 +10,7 @@ $('document').ready(function(){
 			method:'GET',
 			data:{
 				empid:empid,
-				date:date
+				date:date,
 			},
 			success:function(data){
 				$('[name="absent"]').val(data.absent);
