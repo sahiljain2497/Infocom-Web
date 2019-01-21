@@ -15,6 +15,9 @@ class VendorController extends Controller
      */
     public function index(Request $request)
     {
+        if($request->ajax()){
+            return response()->json(['vendors' => Vendor::all(),'success'=>true]);
+        }
         $company_name = $request->input('company_name');
         $records = [];
         if($company_name){

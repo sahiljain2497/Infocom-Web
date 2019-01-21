@@ -437,10 +437,15 @@
             </div>
             <div class="row form-row">
                 <div class="col-sm-3 label-div">
-                    <label>Vendor Name : </label>
+                    <label>Vendor Company : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="vendor_name" />
+                    <select type="text" class="form-control" name="vendor_name">
+                         <option selected disabled>--Select Vendor--</option>
+                        @foreach($vendors as $vendor)
+                            <option>{{$vendor->company_name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="row form-row">

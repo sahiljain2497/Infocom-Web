@@ -8,6 +8,7 @@ use App\Dpr;
 use Auth;
 use Validator;
 use App\Circle;
+use App\Vendor;
 
 class DprController extends Controller
 {
@@ -45,8 +46,9 @@ class DprController extends Controller
      */
     public function create()
     {
+        $vendors = Vendor::all();
         $circles = Circle::all();
-        return view('admin.dpr.create',['circles' => $circles]);
+        return view('admin.dpr.create',['circles' => $circles,'vendors' => $vendors]);
     }
 
     /**
