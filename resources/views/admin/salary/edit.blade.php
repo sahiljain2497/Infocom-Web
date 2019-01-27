@@ -19,14 +19,15 @@
         </div>
         @endif
         <div class="form-container">
-        <form method="post" action="{{ route('salary.store') }}">
-            @csrf
+        <form method="post" action="{{ route('salary.update',$record->id) }}">
+            <input type="hidden" name="_method" value="PUT">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="row form-row">
                 <div class="col-sm-3 label-div">
                     <label>EMP ID : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="emp_id" value={{$emp_id}}/>
+                    <input type="text" class="form-control" name="emp_id" value="{{$record->emp_id}}" />
                 </div>
             </div>
             <div class="row form-row">
@@ -34,7 +35,12 @@
                     <label>Date : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="date" class="form-control" name="date" value={{$date}}/>
+                    <input type="date" class="form-control" name="date" value="{{$record->date}}" />
+                </div>
+            </div>
+            <div class="row form-row">
+                <div class="col-sm-12 text-center">
+                    <button type="button" class="btn btn-primary computeDays">COMPUTE WORKING DAYS</button>
                 </div>
             </div>
             <div class="row form-row">
@@ -42,7 +48,7 @@
                     <label>Present Days: </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="present" value={{$present}}/>
+                    <input type="text" class="form-control" name="present" value="{{$record->present}}"/>
                 </div>
             </div>
            <div class="row form-row">
@@ -50,7 +56,7 @@
                     <label>Absent Days: </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="absent" value="{{$absent}}"/>
+                    <input type="text" class="form-control" name="absent" value="{{$record->absent}}"/>
                 </div>
             </div>
             <div class="row form-row">
@@ -58,7 +64,7 @@
                     <label>Gross Salary : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="gross" value="{{$gross}}"/>
+                    <input type="text" class="form-control" name="gross" value="{{$record->gross}}" />
                 </div>
             </div>
             <div class="row form-row">
@@ -66,7 +72,7 @@
                     <label>PF : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="pf" value={{$pf}}/>
+                    <input type="text" class="form-control" name="pf" value="{{$record->pf}}"/>
                 </div>
             </div>
             <div class="row form-row">
@@ -74,7 +80,7 @@
                     <label>ESI : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="esi" value={{$esi}}/>
+                    <input type="text" class="form-control" name="esi" value="{{$record->esi}}" />
                 </div>
             </div>
             <div class="row form-row">
@@ -82,7 +88,7 @@
                     <label>Net Pay : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="netpay" value={{$netpay}}/>
+                    <input type="text" class="form-control" name="net_pay" value="{{$record->net_pay}}" />
                 </div>
             </div>
             <div class="row form-row">

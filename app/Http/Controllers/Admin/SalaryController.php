@@ -66,7 +66,6 @@ class SalaryController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -88,7 +87,12 @@ class SalaryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $salary = Salary::where('id',$id);
+        $date = $request->input('date');
+        $month = Carbon::parse($date)->month;
+        $year = Carbon::parse($date)->year;
+        $salary = $salary->update($request->except('_method','_token') + ['month' => $month, 'year' => $year]);
+        return redirect()->route('salary.edit',['id' => $id,'record' => $salary])->with('success-message','SALARY UPDATED SUCCESSFULLY');
     }
 
     /**
