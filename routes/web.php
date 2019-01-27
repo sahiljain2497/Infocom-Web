@@ -50,6 +50,9 @@ Route::namespace('User')
 	Route::resource('expense','ExpenseController',[
 		'as' => 'user'
 	]);
+	Route::resource('salary','SalaryController',[
+		'as' => 'user'
+	]);
 	Route::get('/markAsRead','HomeController@markAsRead')->name('user.read');
 });
 
@@ -76,6 +79,9 @@ Route::namespace('Coordinator')
 		'as' => 'coordinator'
 	]);
 	Route::resource('employee_expense','EmployeeExpenseController',[
+		'as' => 'coordinator'
+	]);
+	Route::resource('salary','SalaryController',[
 		'as' => 'coordinator'
 	]);
 	Route::get('/markAsRead','HomeController@markAsRead')->name('coordinator.read');

@@ -36,6 +36,9 @@
             <li class="nav-item {{ Request::segment(2) == 'expense' ? 'active' : '' }}">
                 <a class="nav-link" href="/coordinator/expense"><i class="fas fa-rupee-sign"></i> Expense</a>
             </li>
+            <li class="nav-item {{ Request::segment(2) == 'salary' ? 'active' : '' }}">
+                <a class="nav-link" href="/coordinator/salary"><i class="fas fa-money-check"></i> Salary</a>
+            </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item pc-notification">
