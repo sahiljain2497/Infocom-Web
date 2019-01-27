@@ -9,7 +9,7 @@
             <p class="para-2">We provide the services to our valued principals in this field.It has established a name for itself as a reliable telecom services and networking solutions partner with all its customers by delivering and implementing tomorrow’s solutions today. </p>
         </div>
         <div class="container button-div">
-        	<a class="btn btn-success btn-lg" href="">EXPLORE SERVICES</a>
+        	<a class="btn btn-success btn-lg" href="/services">EXPLORE SERVICES</a>
         </div>
     </div>
 </div>

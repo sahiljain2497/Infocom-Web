@@ -23,6 +23,8 @@ class CreateSalariesTable extends Migration
             $table->string('esi')->nullable();
             $table->string('net_pay')->nullable();
             $table->string('date')->nullable();
+            $table->string('month')->nullable();
+            $table->string('year')->nullable();
             $table->timestamps();
         });
     }

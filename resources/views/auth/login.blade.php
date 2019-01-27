@@ -1,12 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.global')
 
 @section('content')
-<div class="container">
+<div class="container login-container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('LOGIN') }}</div>
-
+                <div class="card-header">Login</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -53,13 +52,11 @@
                         <br/>
                         <div class="form-group row mb-0 text-center">
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary" style="width:150px;">
+                                <button type="submit" class="btn btn-success" style="width:150px;">
                                     {{ __('Login') }}
                                 </button>
                             </div>
-                        </div>
-                        </div class="form-group row">
-                            <div class="col-sm-12">
+                            <div class="col-md-12 forgot-div">
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}

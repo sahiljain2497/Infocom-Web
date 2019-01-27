@@ -34,7 +34,7 @@ body {
 }
 
 nav.shrink {
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.8);
     padding:20px;
     transition: 0.7s;
 }
@@ -80,7 +80,7 @@ nav.shrink {
     margin-top: 10px;
 }
 
-.about-container{
+.contact-container{
     margin-top: 10%;
     background: rgba(0,0,0,0.6);
     padding: 4%;
@@ -88,8 +88,60 @@ nav.shrink {
     border-radius: 10px;
     color: white;
 }
+.about-container{
+    margin-top: 10%;
+    background: rgba(0,0,0,0.7);
+    padding: 4%;
+    padding-bottom: 2%;
+    color: white;
+    max-width: 100%;
+}
+.services-container{
+    margin-top: 10%;
+    background: rgba(0,0,0,0.7);
+    padding: 3%;
+    max-width: 80%;
+    border-radius: 10px;
+    color: white;
+}
+.services-container-1{
+    margin-top: 1%;
+    background: rgba(0,0,0,0.7);
+    padding: 3%;
+    max-width: 80%;
+    border-radius: 10px;
+    color: white;
+}
+.services-container-last{
+    margin-bottom: 5%;
+}
 
-
+.about_us_point ul{
+  list-style: none;
+}
+.about_us_point ul li:before {
+  content: '✓';
+}
+.about_us_point{
+    padding:2%;
+}
+.carousel{
+    height: 435px;
+}
+.login-container{
+    margin-top: 10%;
+}
+.forgot-div{
+    text-align: right;
+}
+.card-body{
+    background: rgba(0,0,0,0.7);
+    color:white;
+}
+.btn-link{
+   color: white;
+    text-shadow: 0 0 3px #FEFFEC;
+}
 @media only screen and (max-width: 770px){
     .navbar-light .navbar-brand{
         font-size: 22px;
@@ -140,10 +192,43 @@ nav.shrink {
         top: 82px;
     }
     .about-container{
+        max-width: 100%;
+        margin: 120px auto;
+    }
+    .about-container h2{
+        font-size: 24px;
+    }
+    .about-container h5{
+        text-align: center;
+    }
+    .about-container .carousel{
+        display: none;
+    }
+    .contact-container{
         max-width: 90%; 
         margin:120px auto;
     }
     #footer{
         font-size: 12px;
+    }
+    .services-container{
+        margin:0 auto;
+        margin-top:120px; 
+        max-width: 90%; 
+    }
+    .services-container-1{
+        margin:0 auto;
+        margin-top:10px; 
+        max-width: 90%; 
+    }
+    .services-container h3,.services-container-1 h3{
+        font-size: 22px;
+    }
+    .login-container{
+        margin-top: 120px;
+        margin-bottom: 100px;
+    }
+    .forgot-div{
+        text-align: center;
     }
 }

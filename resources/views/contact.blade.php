@@ -1,7 +1,7 @@
 @extends('layouts.global')
 
 @section('content')
-<div class="container about-container">
+<div class="container contact-container">
     <form>
         <h5>Get in Touch with Us</h5>
         <br/>

@@ -87,7 +87,7 @@
                     <label>Net Pay : </label>
                 </div>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="netpay" />
+                    <input type="text" class="form-control" name="net_pay" />
                 </div>
             </div>
             <div class="row form-row">

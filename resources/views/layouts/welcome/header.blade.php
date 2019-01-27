@@ -21,6 +21,12 @@
                 <li class="nav-item">
                     <a class="nav-link {{Request::segment(1) == 'contact' ? 'selected' : ''}}" href="/contact">Contact Us</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{Request::segment(1) == 'login' ? 'selected' : ''}}" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{Request::segment(1) == 'register' ? 'selected' : ''}}" href="/register">Signup</a>
+                </li>
             </ul>
         </div>
     </div>

@@ -46,5 +46,8 @@
             </div>
         </form>
     </div>
+    @if(count($records) > 0)
+        @include('admin.salary.listing')
+    @endif
 </div>
 @endsection
