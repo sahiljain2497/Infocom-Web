@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../images/telecom.jpg");
+}
+
+.navbar {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    background-color: transparent;
+    padding: 30px;
+    transition: 0.5s
+}
+
+.navbar-light .navbar-brand {
+    color: whitesmoke;
+    font-size: 35px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+    font-size: 15px;
+}
+
+.navbar-light .navbar-toggler {
+    background: none;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+nav.shrink {
+    background-color: rgba(0,0,0,0.3);
+    padding:20px;
+    transition: 0.7s;
+}
+
+.nav-item{
+    margin:10px;
+}
+
+.nav-item .selected{
+    border:1px solid lightgray;
+}
+
+.freetrial:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.centered {
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    color: white;
+}
+
+.centered p {
+    margin-bottom: 0px;
+}
+
+#footer{
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    background-color:#2F4F4F;
+    color:white;
+}
+
+.button-div{
+    margin-top: 10px;
+}
+
+.about-container{
+    margin-top: 10%;
+    background: rgba(0,0,0,0.6);
+    padding: 4%;
+    padding-bottom: 2%;
+    border-radius: 10px;
+    color: white;
+}
+
+
+@media only screen and (max-width: 770px){
+    .navbar-light .navbar-brand{
+        font-size: 22px;
+    }
+    .nav-item .selected{
+        border:none;
+    }
+    .navbar-light .navbar-toggler{
+        font-size: 14px;
+    }
+    .centered{
+        top:25%;
+        left:0px;
+    }
+    .centered h2{
+        font-size: 25px;
+    }
+    h2 span{
+        display: none;
+    }
+    h2{
+        text-align: center;
+    }
+    .button-div{
+        margin-top: 20px;
+        text-align: center;
+    }
+    .button-div a{
+        font-size: 15px;
+    }
+    .para-1{
+        margin: 5%;
+        padding: 5%;
+        border-top: 1px solid lightgray;
+        border-bottom: 1px solid lightgray;
+    }
+    .para-2{
+        display: none;
+    }
+    .nav-item{
+        padding-left: 10px;
+    }
+    .navbar-collapse{
+        background: rgba(70,70,70,0.9);
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        top: 82px;
+    }
+    .about-container{
+        max-width: 90%; 
+        margin:120px auto;
+    }
+    #footer{
+        font-size: 12px;
+    }
+}
