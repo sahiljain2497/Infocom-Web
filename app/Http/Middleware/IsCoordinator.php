@@ -18,6 +18,6 @@ class IsCoordinator
         if(auth()->user()->isCoordinator()) {
             return $next($request);
         }
-        return redirect('/unauth');
+        return redirect('/');
     }
 }

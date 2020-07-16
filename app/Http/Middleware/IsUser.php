@@ -19,6 +19,6 @@ class IsUser
         if(auth()->user()->isUser()) {
             return $next($request);
         }
-        return redirect('/unauth');
+        return redirect('/');
     }
 }

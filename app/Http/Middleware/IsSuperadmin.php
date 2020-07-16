@@ -18,6 +18,6 @@ class IsSuperadmin
         if(auth()->user()->isSuperadmin()) {
             return $next($request);
         }
-        return redirect('/unauth');
+        return redirect('/');
     }
 }

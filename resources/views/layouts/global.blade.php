@@ -16,6 +16,6 @@
 	@include('layouts.welcome.header')
     @yield('content')
     @include('layouts.welcome.footer')  
-	<script src="{{asset('js/welcome.js')}}" type="text/javascript"></script>
+	<script src="{{ asset('js/welcome.js')}}" type="text/javascript"></script>
 </body>
 </html>
